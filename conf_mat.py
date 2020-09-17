@@ -7,10 +7,8 @@ import numpy as np
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
-
 def main():
-    actual = []
-    dataset = np.loadtxt(open("hw3.data1.csv", "rb"), delimiter=",", skiprows=1)
+    dataset = np.loadtxt(open("hw3.data1.csv", "rb"), delimiter = ",", skiprows = 1)
 
     # Actual values
     actual = dataset[:, -1]
