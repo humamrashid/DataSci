@@ -8,8 +8,8 @@ import numpy as np
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
-def main():
-    dataset = np.loadtxt(open(sys.argv[1], "rb"), delimiter = ",", skiprows = 1, dtype = 'int16')
+def main(filename, intercept):
+    dataset = np.loadtxt(open(filename, "rb"), delimiter = ",", skiprows = 1, dtype = 'int16')
 
     # Actual values
     actual = dataset[:, -1].tolist()
@@ -18,9 +18,6 @@ def main():
 
     # Confusion matrix
     conf_mat = np.zeros((2, 2), dtype= 'int16')
-
-    # Adjustable intercept
-    intercept = int(sys.argv[2])
 
     # Linear model with zero products removed
     for row in dataset:
@@ -68,6 +65,6 @@ if len(sys.argv) != 3:
     print(f'Usage: {sys.argv[0]} <file_name> <intercept>')
     exit(1)
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1], int(sys.argv[2]))
 
 # EOF.
