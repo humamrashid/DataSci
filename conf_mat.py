@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
 def main():
-    dataset = np.loadtxt(open(sys.argv[1], "rb"), delimiter = ",", skiprows = 1, dtype = 'int64')
+    dataset = np.loadtxt(open(sys.argv[1], "rb"), delimiter = ",", skiprows = 1, dtype = 'int16')
 
     # Actual values
     actual = dataset[:, -1].tolist()
@@ -17,7 +17,7 @@ def main():
     assigned = []
 
     # Confusion matrix
-    conf_mat = np.zeros((2, 2), dtype= 'int64')
+    conf_mat = np.zeros((2, 2), dtype= 'int16')
 
     # Adjustable intercept
     intercept = int(sys.argv[2])
@@ -45,13 +45,20 @@ def main():
             # False negative
             conf_mat[1, 0] += 1
 
+    TP = conf_mat[0, 0]
+    TN = conf_mat[1, 1]
+    FP = conf_mat[0, 1]
+    FN = conf_mat[1, 0]
+
+    accuracy = (TP + TN) / (TP + TN + FP + FN)
+
     # Generate confusion matrix (scikit-learn)
-    scikit_mat = confusion_matrix(actual, assigned, labels=[1, -1])
-    scikit_report = classification_report(actual, assigned, labels=[1, -1])
+    scikit_mat = confusion_matrix(actual, assigned, labels = [1, -1])
+    scikit_report = classification_report(actual, assigned, labels = [1, -1])
 
     print("1. Confusion matrix (manual):\n")
     print(conf_mat)
-    print(f"\nTotal correctly predicted: {conf_mat.diagonal().sum()}\n")
+    print("\nAccuracy: ", accuracy, end = "\n\n")
     print("2. Confusion matrix (scikit-learn):\n")
     print(scikit_mat)
     print("\nClassification report (scikit-learn):\n")
