@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
 def main(filename, intercept):
-    dataset = np.loadtxt(open(filename, "rb"), delimiter = ",", skiprows = 1, dtype = 'int16')
+    dataset = np.loadtxt(open(filename, "rb"), delimiter = ",", skiprows = 1, dtype = 'int32')
 
     # Actual values
     actual = dataset[:, -1].tolist()
@@ -17,7 +17,12 @@ def main(filename, intercept):
     assigned = []
 
     # Confusion matrix
-    conf_mat = np.zeros((2, 2), dtype= 'int16')
+    conf_mat = np.zeros((2, 2), dtype = 'int32')
+    # Economic gain matrix
+    econ_mat = np.zeros((2, 2), dtype = 'int32')
+
+    econ_mat[0, 1] = 100
+    econ_mat[1, 0] = 1000
 
     # Linear model with zero products removed
     for row in dataset:
