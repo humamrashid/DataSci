@@ -58,13 +58,13 @@ def main(filename, intercept):
     scikit_mat = confusion_matrix(actual, assigned, labels = [1, -1])
     scikit_report = classification_report(actual, assigned, labels = [1, -1])
 
-    print("1. Confusion matrix (manual):\n")
-    print(conf_mat)
+    print("1. Confusion matrix (manual):\n\n", conf_mat)
     print("\nAccuracy: ", accuracy, end = "\n\n")
-    print("2. Confusion matrix (scikit-learn):\n")
-    print(scikit_mat)
-    print("\nClassification report (scikit-learn):\n")
-    print(scikit_report)
+    print("2. Confusion matrix (scikit-learn):\n\n", scikit_mat)
+    print("\nClassification report (scikit-learn):\n\n", scikit_report)
+    print("3. Economic gain matrix:\n\n", econ_mat)
+    print(np.matmul(conf_mat, econ_mat))
+    print(np.matmul(econ_mat, conf_mat))
 
 if len(sys.argv) != 3:
     print(f'Usage: {sys.argv[0]} <file_name> <intercept>')
