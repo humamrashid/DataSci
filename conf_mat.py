@@ -21,9 +21,6 @@ def main(filename, intercept):
     # Economic gain matrix
     econ_mat = np.zeros((2, 2), dtype = 'int32')
 
-    econ_mat[0, 1] = 100
-    econ_mat[1, 0] = 1000
-
     # Linear model with zero products removed
     for row in dataset:
         y = (24 * row[0]) + (-15 * row[1]) + (-38 * row[2]) + (-7 * row[3]) + (-41 * row[4]) \
@@ -54,7 +51,7 @@ def main(filename, intercept):
 
     accuracy = (TP + TN) / (TP + TN + FP + FN)
 
-    # Generate confusion matrix (scikit-learn)
+    # Generate confusion matrix with scikit-learn for verification
     scikit_mat = confusion_matrix(actual, assigned, labels = [1, -1])
     scikit_report = classification_report(actual, assigned, labels = [1, -1])
 
@@ -62,9 +59,7 @@ def main(filename, intercept):
     print("\nAccuracy: ", accuracy, end = "\n\n")
     print("2. Confusion matrix (scikit-learn):\n\n", scikit_mat)
     print("\nClassification report (scikit-learn):\n\n", scikit_report)
-    print("3. Economic gain matrix:\n\n", econ_mat)
-    print(np.matmul(conf_mat, econ_mat))
-    print(np.matmul(econ_mat, conf_mat))
+    print("Economic gain: ", round((accuracy * 0) + ((1.00 - accuracy) * (100 + 1000)), 2))
 
 if len(sys.argv) != 3:
     print(f'Usage: {sys.argv[0]} <file_name> <intercept>')
