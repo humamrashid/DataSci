@@ -57,7 +57,7 @@ def main(filename, intercept):
     print("\nAccuracy: ", accuracy, end = "\n\n")
     print("2. Confusion matrix (scikit-learn):\n\n", scikit_mat)
     print("\nClassification report (scikit-learn):\n\n", scikit_report)
-    print("Economic gain: ", round((accuracy * 0) + ((1.00 - accuracy) * (100 + 1000)), 2))
+    print("Economic gain: ", round((accuracy * 0) + ((1.00 - accuracy) * (-1 * (100 + 1000))), 2))
 
 if len(sys.argv) != 3:
     print(f'Usage: {sys.argv[0]} <file_name> <intercept>')
