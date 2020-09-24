@@ -18,8 +18,6 @@ def main(filename, intercept):
 
     # Confusion matrix
     conf_mat = np.zeros((2, 2), dtype = 'int32')
-    # Economic gain matrix
-    econ_mat = np.zeros((2, 2), dtype = 'int32')
 
     # Linear model with zero products removed
     for row in dataset:
