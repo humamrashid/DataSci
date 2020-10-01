@@ -17,39 +17,39 @@ def pow_model():
 
 def main():
     ibm_metrics = {
-            'rev': (1, 2, 3),
-            'ern': (1, 2, 3),
-            'div': (1, 2, 3)
+            'rev': np.array((1, 2, 3)),
+            'ern': np.array((1, 2, 3)),
+            'div': np.array((1, 2, 3))
             }
     msft_metrics = {
-            'rev': (1, 2, 3),
-            'ern': (1, 2, 3),
-            'div': (1, 2, 3)
+            'rev': np.array((1, 2, 3)),
+            'ern': np.array((1, 2, 3)),
+            'div': np.array((1, 2, 3))
             }
     aapl_metrics = {
-            'rev': (1, 2, 3),
-            'ern': (1, 2, 3),
-            'div': (1, 2, 3)
+            'rev': np.array((1, 2, 3)),
+            'ern': np.array((1, 2, 3)),
+            'div': np.array((1, 2, 3))
             }
     goog_metrics = {
-            'rev': (1, 2, 3),
-            'ern': (1, 2, 3),
-            'div': (1, 2, 3)
+            'rev': np.array((1, 2, 3)),
+            'ern': np.array((1, 2, 3)),
+            'div': np.array((1, 2, 3))
             }
     fb_metrics = {
-            'rev': (1, 2, 3),
-            'ern': (1, 2, 3),
-            'div': (1, 2, 3)
+            'rev': np.array((1, 2, 3)),
+            'ern': np.array((1, 2, 3)),
+            'div': np.array((1, 2, 3))
             }
     pg_metrics = {
-            'rev': (1, 2, 3),
-            'ern': (1, 2, 3),
-            'div': (1, 2, 3)
+            'rev': np.array((1, 2, 3)),
+            'ern': np.array((1, 2, 3)),
+            'div': np.array((1, 2, 3))
             }
     ge_metrics = {
-            'rev': (1, 2, 3),
-            'ern': (1, 2, 3),
-            'div': (1, 2, 3)
+            'rev': np.array((1, 2, 3)),
+            'ern': np.array((1, 2, 3)),
+            'div': np.array((1, 2, 3))
             }
     print(ibm_metrics)
     return
