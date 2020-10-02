@@ -5,17 +5,17 @@ Symbol: IBM
 
 	Revenue:            
 		Lin. model: 18754.21            
-		Log. model: 15828.21            
+		Log. model: 18998.42            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 2.28            
-		Log. model: 1.36            
+		Log. model: 2.32            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
 		Lin. model: 1.64            
-		Log. model: 1.84            
+		Log. model: 1.62            
 		Exp. model: 0            
 		Pow. model: 0            
 
@@ -23,17 +23,17 @@ Symbol: MSFT
 
 	Revenue:            
 		Lin. model: 36822.32            
-		Log. model: 55856.24            
+		Log. model: 35253.6            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 1.59            
-		Log. model: 2.89            
+		Log. model: 1.49            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
 		Lin. model: 0.52            
-		Log. model: 0.79            
+		Log. model: 0.5            
 		Exp. model: 0            
 		Pow. model: 0            
 
@@ -41,17 +41,17 @@ Symbol: AAPL
 
 	Revenue:            
 		Lin. model: 71965.04            
-		Log. model: 110233.97            
+		Log. model: 70854.61            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 0.88            
-		Log. model: 1.49            
+		Log. model: 0.86            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
 		Lin. model: 0.2            
-		Log. model: 0.22            
+		Log. model: 0.19            
 		Exp. model: 0            
 		Pow. model: 0            
 
@@ -59,12 +59,12 @@ Symbol: GOOG
 
 	Revenue:            
 		Lin. model: 45414.5            
-		Log. model: 78937.3            
+		Log. model: 43169.15            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 13.44            
-		Log. model: 30.62            
+		Log. model: 13.28            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
@@ -77,12 +77,12 @@ Symbol: FB
 
 	Revenue:            
 		Lin. model: 20413.61            
-		Log. model: 39424.44            
+		Log. model: 19137.63            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 1.92            
-		Log. model: 2.23            
+		Log. model: 1.81            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
@@ -95,17 +95,17 @@ Symbol: PG
 
 	Revenue:            
 		Lin. model: 17953.39            
-		Log. model: 21726.96            
+		Log. model: 17696.33            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 0.8            
-		Log. model: 0.33            
+		Log. model: 0.7            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
 		Lin. model: 0.78            
-		Log. model: 0.9            
+		Log. model: 0.77            
 		Exp. model: 0            
 		Pow. model: 0            
 
@@ -113,17 +113,17 @@ Symbol: GE
 
 	Revenue:            
 		Lin. model: 21783.43            
-		Log. model: 8494.3            
+		Log. model: 21459.06            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 0.45            
-		Log. model: 3.32            
+		Log. model: 0.11            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
 		Lin. model: 0.03            
-		Log. model: 0.5            
+		Log. model: 0.0            
 		Exp. model: 0            
 		Pow. model: 0            
 
