@@ -82,13 +82,14 @@ def main():
     pg_past8quarters = {
             'rev': np.array((16503.00, 16690.00, 17438.00, 16462.00, 17094.00, \
                     17798.00, 18240.00, 17214.00)),
-            'ern': np.array((0.72, 1.22, 1.22, 1.04, 2.12, 1.36, 1.41, 1.12)),
+            'ern': np.array((0.72, 1.22, 1.22, 1.04, -2.12, 1.36, 1.41, 1.12)),
             'div': np.array((0.74, 0.74, 0.74, 0.74, 0.77, 0.77, 0.77, 0.77))
             }
     ge_past8quarters = {
-            'rev': np.array((1, 2, 3)),
-            'ern': np.array((1, 2, 3)),
-            'div': np.array((1, 2, 3))
+            'rev': np.array((29162.00, 23392.00, 16670.00, 22202.00, 23414.00, \
+                    23360.00, 26238.00, 20524.00)),
+            'ern': np.array((0.07, -2.62, 0.07, 0.41, -0.01, -1.08, 0.06, 0.70)),
+            'div': np.array((0.14, 0.12, 0.14, 0.01, 0.03, 0.01, 0.03, 0.01))
             }
     ############################################################################
     #
@@ -98,32 +99,37 @@ def main():
     ibm_nextquarter_lin = {
             'rev': lin_model(ibm_past8quarters['rev']),
             'ern': lin_model(ibm_past8quarters['ern']),
-            'div': lin_model(ibm_past8quarters['div'])
+            'div': abs(lin_model(ibm_past8quarters['div']))
             }
     msft_nextquarter_lin = {
             'rev': lin_model(msft_past8quarters['rev']),
             'ern': lin_model(msft_past8quarters['ern']),
-            'div': lin_model(msft_past8quarters['div'])
+            'div': abs(lin_model(msft_past8quarters['div']))
             }
     aapl_nextquarter_lin = {
             'rev': lin_model(aapl_past8quarters['rev']),
             'ern': lin_model(aapl_past8quarters['ern']),
-            'div': lin_model(aapl_past8quarters['div'])
+            'div': abs(lin_model(aapl_past8quarters['div']))
             }
     goog_nextquarter_lin = {
             'rev': lin_model(goog_past8quarters['rev']),
             'ern': lin_model(goog_past8quarters['ern']),
-            'div': lin_model(goog_past8quarters['div'])
+            'div': abs(lin_model(goog_past8quarters['div']))
             }
     fb_nextquarter_lin = {
             'rev': lin_model(fb_past8quarters['rev']),
             'ern': lin_model(fb_past8quarters['ern']),
-            'div': lin_model(fb_past8quarters['div'])
+            'div': abs(lin_model(fb_past8quarters['div']))
             }
     pg_nextquarter_lin = {
             'rev': lin_model(pg_past8quarters['rev']),
             'ern': lin_model(pg_past8quarters['ern']),
-            'div': lin_model(pg_past8quarters['div'])
+            'div': abs(lin_model(pg_past8quarters['div']))
+            }
+    ge_nextquarter_lin = {
+            'rev': lin_model(ge_past8quarters['rev']),
+            'ern': lin_model(ge_past8quarters['ern']),
+            'div': abs(lin_model(ge_past8quarters['div']))
             }
     print("Next Quarter Predictions (Linear Model, In Millions USD)\
             \n--------------------------------------------------------\n")
@@ -133,6 +139,7 @@ def main():
     print_form('GOOG', goog_nextquarter_lin)
     print_form('FB', fb_nextquarter_lin)
     print_form('PG', pg_nextquarter_lin)
+    print_form('GE', ge_nextquarter_lin)
 
 if __name__ == '__main__':
     main()
