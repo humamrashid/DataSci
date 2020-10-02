@@ -8,11 +8,11 @@ import math as m
 import numpy as np
 from numpy.linalg import inv
 
-def print_form(sym, vals):
-    s = f"""{sym}:\
-            \n\tRevenue:\t{vals['rev']}\
-            \n\tEarnings:\t{vals['ern']}\
-            \n\tDividends:\t{vals['div']}\
+def print_metrics(m):
+    s = f"""{m['sym']}:\
+            \n\tRevenue:\t{m['rev']}\
+            \n\tEarnings:\t{m['ern']}\
+            \n\tDividends:\t{m['div']}\
             \n"""
     print(s)
 
@@ -126,44 +126,37 @@ def main():
             }
     ############################################################################
     #
-    # Next Quarter Revenue, Earnings & Dividends (Linear Model Predictions)
+    # Next Quarter nqrenue, Earnings & nqdidends (Linear Model Predictions)
     #
     ############################################################################
-    ibm_nextquarter_lin = {
-            'rev': lin_model(ibm_metrics['rev']),
-            'ern': lin_model(ibm_metrics['ern']),
-            'div': abs(lin_model(ibm_metrics['div']))
-            }
-    msft_nextquarter_lin = {
-            'rev': lin_model(msft_metrics['rev']),
-            'ern': lin_model(msft_metrics['ern']),
-            'div': abs(lin_model(msft_metrics['div']))
-            }
-    aapl_nextquarter_lin = {
-            'rev': lin_model(aapl_metrics['rev']),
-            'ern': lin_model(aapl_metrics['ern']),
-            'div': abs(lin_model(aapl_metrics['div']))
-            }
-    goog_nextquarter_lin = {
-            'rev': lin_model(goog_metrics['rev']),
-            'ern': lin_model(goog_metrics['ern']),
-            'div': abs(lin_model(goog_metrics['div']))
-            }
-    fb_nextquarter_lin = {
-            'rev': lin_model(fb_metrics['rev']),
-            'ern': lin_model(fb_metrics['ern']),
-            'div': abs(lin_model(fb_metrics['div']))
-            }
-    pg_nextquarter_lin = {
-            'rev': lin_model(pg_metrics['rev']),
-            'ern': lin_model(pg_metrics['ern']),
-            'div': abs(lin_model(pg_metrics['div']))
-            }
-    ge_nextquarter_lin = {
-            'rev': lin_model(ge_metrics['rev']),
-            'ern': lin_model(ge_metrics['ern']),
-            'div': abs(lin_model(ge_metrics['div']))
-            }
+    ibm_metrics['rev_next'] = lin_model(ibm_metrics['rev_past'])
+    ibm_metrics['ern_next'] = lin_model(ibm_metrics['ern_past'])
+    ibm_metrics['div_next'] = abs(lin_model(ibm_metrics['div_past']))
+
+    msft_metrics['rev_next'] = lin_model(msft_metrics['rev_past'])
+    msft_metrics['ern_next'] = lin_model(msft_metrics['ern_past'])
+    msft_metrics['div_next'] = abs(lin_model(msft_metrics['div_past']))
+
+    aapl_metrics['rev_next'] = lin_model(aapl_metrics['rev_past'])
+    aapl_metrics['ern_next'] = lin_model(aapl_metrics['ern_past'])
+    aapl_metrics['div_next'] = abs(lin_model(aapl_metrics['div_past']))
+
+    goog_metics['rev_next'] = lin_model(goog_metrics['rev_past'])
+    goog_metics['ern_next'] = lin_model(goog_metrics['ern_past'])
+    goog_metics['div_next'] = abs(lin_model(goog_metrics['div_past']))
+
+    fb_metics['rev_next'] = lin_model(fb_metrics['rev_past'])
+    fb_metics['ern_next'] = lin_model(fb_metrics['ern_past'])
+    fb_metics['div_next'] = abs(lin_model(fb_metrics['div_past']))
+
+    pg_metrics['rev_next'] = lin_model(pg_metrics['rev_past'])
+    pg_metrics['ern_next'] = lin_model(pg_metrics['ern_past'])
+    pg_metrics['div_next'] = abs(lin_model(pg_metrics['div_past']))
+
+    ge_metics['rev_next'] = lin_model(ge_metrics['rev_past'])
+    ge_metics['ern_next'] = lin_model(ge_metrics['ern_past'])
+    ge_metics['div_next'] = abs(lin_model(ge_metrics['div_past']))
+
     print("Next Quarter Predictions (Linear Model, In Millions USD)\
             \n--------------------------------------------------------\n")
     print_form('IBM', ibm_nextquarter_lin)
@@ -175,53 +168,53 @@ def main():
     print_form('GE', ge_nextquarter_lin)
     ############################################################################
     #
-    # Next Quarter Revenue, Earnings & Dividends (Logarithmic Model Predictions)
+    # Next Quarter nqrenue, Earnings & nqdidends (Logarithmic Model Predictions)
     #
     ############################################################################
-    ibm_nextquarter_log = {
-            'rev': log_model(ibm_metrics['rev']),
-            'ern': log_model(ibm_metrics['ern']),
-            'div': abs(log_model(ibm_metrics['div']))
-            }
-    msft_nextquarter_log = {
-            'rev': log_model(msft_metrics['rev']),
-            'ern': log_model(msft_metrics['ern']),
-            'div': abs(log_model(msft_metrics['div']))
-            }
-    aapl_nextquarter_log = {
-            'rev': log_model(aapl_metrics['rev']),
-            'ern': log_model(aapl_metrics['ern']),
-            'div': abs(log_model(aapl_metrics['div']))
-            }
-    goog_nextquarter_log = {
-            'rev': log_model(goog_metrics['rev']),
-            'ern': log_model(goog_metrics['ern']),
-            'div': abs(log_model(goog_metrics['div']))
-            }
-    fb_nextquarter_log = {
-            'rev': log_model(fb_metrics['rev']),
-            'ern': log_model(fb_metrics['ern']),
-            'div': abs(log_model(fb_metrics['div']))
-            }
-    pg_nextquarter_log = {
-            'rev': log_model(pg_metrics['rev']),
-            'ern': log_model(pg_metrics['ern']),
-            'div': abs(log_model(pg_metrics['div']))
-            }
-    ge_nextquarter_log = {
-            'rev': log_model(ge_metrics['rev']),
-            'ern': log_model(ge_metrics['ern']),
-            'div': abs(log_model(ge_metrics['div']))
-            }
-    print("Next Quarter Predictions (Log. Model, In Millions USD)\
-            \n------------------------------------------------------\n")
-    print_form('IBM', ibm_nextquarter_log)
-    print_form('MSFT', msft_nextquarter_log)
-    print_form('AAPL', aapl_nextquarter_log)
-    print_form('GOOG', goog_nextquarter_log)
-    print_form('FB', fb_nextquarter_log)
-    print_form('PG', pg_nextquarter_log)
-    print_form('GE', ge_nextquarter_log)
+    #ibm_nextquarter_log = {
+    #        ['rev_next'] = log_model(ibm_metrics['rev_past']),
+    #        ['ern_next'] = log_model(ibm_metrics['ern_past']),
+    #        ['div_next'] = abs(log_model(ibm_metrics['div_past']))
+    #        }
+    #msft_nextquarter_log = {
+    #        ['rev_next'] = log_model(msft_metrics['rev_past']),
+    #        ['ern_next'] = log_model(msft_metrics['ern_past']),
+    #        ['div_next'] = abs(log_model(msft_metrics['div_past']))
+    #        }
+    #aapl_nextquarter_log = {
+    #        ['rev_next'] = log_model(aapl_metrics['rev_past']),
+    #        ['ern_next'] = log_model(aapl_metrics['ern_past']),
+    #        ['div_next'] = abs(log_model(aapl_metrics['div_past']))
+    #        }
+    #goog_nextquarter_log = {
+    #        ['rev_next'] = log_model(goog_metrics['rev_past']),
+    #        ['ern_next'] = log_model(goog_metrics['ern_past']),
+    #        ['div_next'] = abs(log_model(goog_metrics['div_past']))
+    #        }
+    #fb_nextquarter_log = {
+    #        ['rev_next'] = log_model(fb_metrics['rev_past']),
+    #        ['ern_next'] = log_model(fb_metrics['ern_past']),
+    #        ['div_next'] = abs(log_model(fb_metrics['div_past']))
+    #        }
+    #pg_nextquarter_log = {
+    #        ['rev_next'] = log_model(pg_metrics['rev_past']),
+    #        ['ern_next'] = log_model(pg_metrics['ern_past']),
+    #        ['div_next'] = abs(log_model(pg_metrics['div_past']))
+    #        }
+    #ge_nextquarter_log = {
+    #        ['rev_next'] = log_model(ge_metrics['rev_past']),
+    #        ['ern_next'] = log_model(ge_metrics['ern_past']),
+    #        ['div_next'] = abs(log_model(ge_metrics['div_past']))
+    #        }
+    #print("Next Quarter Predictions (Log. Model, In Millions USD)\
+    #        \n------------------------------------------------------\n")
+    #print_form('IBM', ibm_nextquarter_log)
+    #print_form('MSFT', msft_nextquarter_log)
+    #print_form('AAPL', aapl_nextquarter_log)
+    #print_form('GOOG', goog_nextquarter_log)
+    #print_form('FB', fb_nextquarter_log)
+    #print_form('PG', pg_nextquarter_log)
+    #print_form('GE', ge_nextquarter_log)
 
 if __name__ == '__main__':
     main()
