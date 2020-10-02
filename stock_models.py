@@ -60,10 +60,10 @@ def print_metrics(m):
             \n\t\tExp. model: {m['ern_next']['exp']}\
             \n\t\tPow. model: {m['ern_next']['pow']}\
             \n\tDividends:\
-            \n\t\tLin. model: {m['div_next']['lin']}\
-            \n\t\tLog. model: {m['div_next']['log']}\
-            \n\t\tExp. model: {m['div_next']['exp']}\
-            \n\t\tPow. model: {m['div_next']['pow']}\
+            \n\t\tLin. model: {abs(m['div_next']['lin'])}\
+            \n\t\tLog. model: {abs(m['div_next']['log'])}\
+            \n\t\tExp. model: {abs(m['div_next']['exp'])}\
+            \n\t\tPow. model: {abs(m['div_next']['pow'])}\
             \n"""
     print(s)
 

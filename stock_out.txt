@@ -122,8 +122,8 @@ Symbol: GE
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
-		Lin. model: -0.03            
-		Log. model: -0.5            
+		Lin. model: 0.03            
+		Log. model: 0.5            
 		Exp. model: 0            
 		Pow. model: 0            
 
