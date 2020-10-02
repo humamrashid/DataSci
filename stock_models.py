@@ -62,10 +62,10 @@ def main():
             'div': np.array((1, 2, 3))
             }
     fb_past8quarters = {
-            'rev': np.array((13231, 13727, 16914, 15077, 16886, 17652, 21082, \
-                    17737)),
-            'ern': np.array((1, 2, 3)),
-            'div': np.array((0, 0, 0, 0, 0, 0, 0, 0))
+            'rev': np.array((13231.00, 13727.00, 16914.00, 15077.00, 16886.00, \
+                    17652.00, 21082.00, 17737.00)),
+            'ern': np.array((1.74, 1.76, 2.38, 0.85, 0.91, 2.12, 2.56, 1.71)),
+            'div': np.array((0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00))
             }
     pg_past8quarters = {
             'rev': np.array((1, 2, 3)),
@@ -84,11 +84,11 @@ def main():
     ############################################################################
     fb_nextquarter_lin = {
             'rev': lin_model(fb_past8quarters['rev']),
-            #'ern': lin_model(fb_past8quarters['ern']),
-            #'div': lin_model(fb_past8_quarters['div'])
+            'ern': lin_model(fb_past8quarters['ern']),
+            'div': lin_model(fb_past8quarters['div'])
             }
 
-    print(fb_nextquarter_lin['rev'])
+    print(fb_nextquarter_lin)
 
 if __name__ == '__main__':
     main()
