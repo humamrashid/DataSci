@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
-def main(filename, intercept):
+def main(filename, bias):
     dataset = np.loadtxt(open(filename, "rb"), delimiter = ",", skiprows = 1, dtype = 'int32')
 
     # Actual values
@@ -24,7 +24,7 @@ def main(filename, intercept):
         y = (24 * row[0]) + (-15 * row[1]) + (-38 * row[2]) + (-7 * row[3]) + (-41 * row[4]) \
                 + (35 * row[5]) + (-2 * row[7]) + (19 * row[8]) + (33 * row[9]) + (-3 * row[10]) \
                 + (7 * row[11]) + (3 * row[12]) + (-47 * row[13]) + (26 * row[14]) \
-                + (10 * row[15]) + (40 * row[16]) + (-1 * row[17]) + (3 * row[18]) + intercept
+                + (10 * row[15]) + (40 * row[16]) + (-1 * row[17]) + (3 * row[18]) + bias
         assigned.append(1) if y > 0 else assigned.append(-1)
 
     # Generate confusion matrix (manual)
@@ -60,7 +60,7 @@ def main(filename, intercept):
     print("Economic gain: ", round((accuracy * 0) + ((1.00 - accuracy) * (-1 * (100 + 1000))), 2))
 
 if len(sys.argv) != 3:
-    print(f'Usage: {sys.argv[0]} <file_name> <intercept>')
+    print(f'Usage: {sys.argv[0]} <file_name> <bias>')
     exit(1)
 if __name__ == '__main__':
     main(sys.argv[1], int(sys.argv[2]))
