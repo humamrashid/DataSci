@@ -7,6 +7,11 @@ import sys
 import numpy as np
 from numpy.linalg import inv
 
+def print_vals(sym, vals):
+    s = f"""{sym}:\n\tRevenue:\t{vals['rev']}\n\tEarnings:\t{vals['ern']}\
+    \n\tDividends:\t{vals['div']}\n"""
+    print(s)
+
 def lin_model(Y):
     X = np.array((
         (1, 1),
@@ -42,9 +47,10 @@ def main():
     #
     ############################################################################
     ibm_past8quarters = {
-            'rev': np.array((1, 2, 3)),
-            'ern': np.array((1, 2, 3)),
-            'div': np.array((1, 2, 3))
+            'rev': np.array((20003.00, 18756.00, 21760.00, 18182.00, 19161.00, \
+                18028.00, 21776.00, 17571.00)),
+            'ern': np.array((2.61, 2.94, 2.15, 1.78, 2.81, 1.87, 4.11, 1.31)),
+            'div': np.array((1.57, 1.57, 1.55, 1.57, 1.62, 1.62, 1.62, 1.62))
             }
     msft_past8quarters = {
             'rev': np.array((1, 2, 3)),
@@ -82,13 +88,19 @@ def main():
     # Next Quarter Revenue, Earnings & Dividends (Linear Model)
     #
     ############################################################################
+    ibm_nextquarter_lin = {
+            'rev': lin_model(ibm_past8quarters['rev']),
+            'ern': lin_model(ibm_past8quarters['ern']),
+            'div': lin_model(ibm_past8quarters['div'])
+            }
     fb_nextquarter_lin = {
             'rev': lin_model(fb_past8quarters['rev']),
             'ern': lin_model(fb_past8quarters['ern']),
             'div': lin_model(fb_past8quarters['div'])
             }
-
-    print(fb_nextquarter_lin)
+    print("Next Quarter Predictions\n########################\n")
+    print_vals('IBM', ibm_nextquarter_lin)
+    print_vals('FB', fb_nextquarter_lin)
 
 if __name__ == '__main__':
     main()
