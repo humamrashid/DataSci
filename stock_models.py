@@ -80,9 +80,10 @@ def main():
             'div': np.array((0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00))
             }
     pg_past8quarters = {
-            'rev': np.array((1, 2, 3)),
-            'ern': np.array((1, 2, 3)),
-            'div': np.array((1, 2, 3))
+            'rev': np.array((16503.00, 16690.00, 17438.00, 16462.00, 17094.00, \
+                    17798.00, 18240.00, 17214.00)),
+            'ern': np.array((0.72, 1.22, 1.22, 1.04, 2.12, 1.36, 1.41, 1.12)),
+            'div': np.array((0.74, 0.74, 0.74, 0.74, 0.77, 0.77, 0.77, 0.77))
             }
     ge_past8quarters = {
             'rev': np.array((1, 2, 3)),
@@ -119,13 +120,19 @@ def main():
             'ern': lin_model(fb_past8quarters['ern']),
             'div': lin_model(fb_past8quarters['div'])
             }
-    print("Next Quarter Predictions (Linear Model, in m $)\
-            \n-----------------------------------------------\n")
+    pg_nextquarter_lin = {
+            'rev': lin_model(pg_past8quarters['rev']),
+            'ern': lin_model(pg_past8quarters['ern']),
+            'div': lin_model(pg_past8quarters['div'])
+            }
+    print("Next Quarter Predictions (Linear Model, In Millions USD)\
+            \n--------------------------------------------------------\n")
     print_form('IBM', ibm_nextquarter_lin)
     print_form('MSFT', msft_nextquarter_lin)
     print_form('AAPL', aapl_nextquarter_lin)
     print_form('GOOG', goog_nextquarter_lin)
     print_form('FB', fb_nextquarter_lin)
+    print_form('PG', pg_nextquarter_lin)
 
 if __name__ == '__main__':
     main()
