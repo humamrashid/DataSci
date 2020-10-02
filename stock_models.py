@@ -268,55 +268,6 @@ def main():
             \n--------------------------------------------------------\n")
     for m in metrics:
         print_metrics(m)
-    ############################################################################
-    #
-    # Next Quarter nqrenue, Earnings & nqdidends (Logarithmic Model Predictions)
-    #
-    ############################################################################
-    #ibm_nextquarter_log = {
-    #        ['rev_next'] = log_model(ibm_metrics['rev_past']),
-    #        ['ern_next'] = log_model(ibm_metrics['ern_past']),
-    #        ['div_next'] = abs(log_model(ibm_metrics['div_past']))
-    #        }
-    #msft_nextquarter_log = {
-    #        ['rev_next'] = log_model(msft_metrics['rev_past']),
-    #        ['ern_next'] = log_model(msft_metrics['ern_past']),
-    #        ['div_next'] = abs(log_model(msft_metrics['div_past']))
-    #        }
-    #aapl_nextquarter_log = {
-    #        ['rev_next'] = log_model(aapl_metrics['rev_past']),
-    #        ['ern_next'] = log_model(aapl_metrics['ern_past']),
-    #        ['div_next'] = abs(log_model(aapl_metrics['div_past']))
-    #        }
-    #goog_nextquarter_log = {
-    #        ['rev_next'] = log_model(goog_metrics['rev_past']),
-    #        ['ern_next'] = log_model(goog_metrics['ern_past']),
-    #        ['div_next'] = abs(log_model(goog_metrics['div_past']))
-    #        }
-    #fb_nextquarter_log = {
-    #        ['rev_next'] = log_model(fb_metrics['rev_past']),
-    #        ['ern_next'] = log_model(fb_metrics['ern_past']),
-    #        ['div_next'] = abs(log_model(fb_metrics['div_past']))
-    #        }
-    #pg_nextquarter_log = {
-    #        ['rev_next'] = log_model(pg_metrics['rev_past']),
-    #        ['ern_next'] = log_model(pg_metrics['ern_past']),
-    #        ['div_next'] = abs(log_model(pg_metrics['div_past']))
-    #        }
-    #ge_nextquarter_log = {
-    #        ['rev_next'] = log_model(ge_metrics['rev_past']),
-    #        ['ern_next'] = log_model(ge_metrics['ern_past']),
-    #        ['div_next'] = abs(log_model(ge_metrics['div_past']))
-    #        }
-    #print("Next Quarter Predictions (Log. Model, In Millions USD)\
-    #        \n------------------------------------------------------\n")
-    #print_metrics('IBM', ibm_nextquarter_log)
-    #print_metrics('MSFT', msft_nextquarter_log)
-    #print_metrics('AAPL', aapl_nextquarter_log)
-    #print_metrics('GOOG', goog_nextquarter_log)
-    #print_metrics('FB', fb_nextquarter_log)
-    #print_metrics('PG', pg_nextquarter_log)
-    #print_metrics('GE', ge_nextquarter_log)
 
 if __name__ == '__main__':
     main()
