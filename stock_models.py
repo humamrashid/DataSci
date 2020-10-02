@@ -129,33 +129,33 @@ def main():
     # Next Quarter nqrenue, Earnings & nqdidends (Linear Model Predictions)
     #
     ############################################################################
-    ibm_metrics['rev_next'] = lin_model(ibm_metrics['rev_past'])
-    ibm_metrics['ern_next'] = lin_model(ibm_metrics['ern_past'])
-    ibm_metrics['div_next'] = abs(lin_model(ibm_metrics['div_past']))
+    ibm_metrics['rev_next'] = {'lin': lin_model(ibm_metrics['rev_past'])}
+    ibm_metrics['ern_next'] = {'lin': lin_model(ibm_metrics['ern_past'])}
+    ibm_metrics['div_next'] = {'lin': abs(lin_model(ibm_metrics['div_past']))}
 
-    msft_metrics['rev_next'] = lin_model(msft_metrics['rev_past'])
-    msft_metrics['ern_next'] = lin_model(msft_metrics['ern_past'])
-    msft_metrics['div_next'] = abs(lin_model(msft_metrics['div_past']))
+    msft_metrics['rev_next'] = {'lin': lin_model(msft_metrics['rev_past'])}
+    msft_metrics['ern_next'] = {'lin': lin_model(msft_metrics['ern_past'])}
+    msft_metrics['div_next'] = {'lin': abs(lin_model(msft_metrics['div_past']))}
 
-    aapl_metrics['rev_next'] = lin_model(aapl_metrics['rev_past'])
-    aapl_metrics['ern_next'] = lin_model(aapl_metrics['ern_past'])
-    aapl_metrics['div_next'] = abs(lin_model(aapl_metrics['div_past']))
+    aapl_metrics['rev_next'] = {'lin': lin_model(aapl_metrics['rev_past'])}
+    aapl_metrics['ern_next'] = {'lin': lin_model(aapl_metrics['ern_past'])}
+    aapl_metrics['div_next'] = {'lin': abs(lin_model(aapl_metrics['div_past']))}
 
-    goog_metics['rev_next'] = lin_model(goog_metrics['rev_past'])
-    goog_metics['ern_next'] = lin_model(goog_metrics['ern_past'])
-    goog_metics['div_next'] = abs(lin_model(goog_metrics['div_past']))
+    goog_metrics['rev_next'] = {'lin': lin_model(goog_metrics['rev_past'])}
+    goog_metrics['ern_next'] = {'lin': lin_model(goog_metrics['ern_past'])}
+    goog_metrics['div_next'] = {'lin': abs(lin_model(goog_metrics['div_past']))}
 
-    fb_metics['rev_next'] = lin_model(fb_metrics['rev_past'])
-    fb_metics['ern_next'] = lin_model(fb_metrics['ern_past'])
-    fb_metics['div_next'] = abs(lin_model(fb_metrics['div_past']))
+    fb_metrics['rev_next'] = {'lin': lin_model(fb_metrics['rev_past'])}
+    fb_metrics['ern_next'] = {'lin': lin_model(fb_metrics['ern_past'])}
+    fb_metrics['div_next'] = {'lin': abs(lin_model(fb_metrics['div_past']))}
 
-    pg_metrics['rev_next'] = lin_model(pg_metrics['rev_past'])
-    pg_metrics['ern_next'] = lin_model(pg_metrics['ern_past'])
-    pg_metrics['div_next'] = abs(lin_model(pg_metrics['div_past']))
+    pg_metrics['rev_next'] = {'lin': lin_model(pg_metrics['rev_past'])}
+    pg_metrics['ern_next'] = {'lin': lin_model(pg_metrics['ern_past'])}
+    pg_metrics['div_next'] = {'lin': abs(lin_model(pg_metrics['div_past']))}
 
-    ge_metics['rev_next'] = lin_model(ge_metrics['rev_past'])
-    ge_metics['ern_next'] = lin_model(ge_metrics['ern_past'])
-    ge_metics['div_next'] = abs(lin_model(ge_metrics['div_past']))
+    ge_metrics['rev_next'] = {'lin': lin_model(ge_metrics['rev_past'])}
+    ge_metrics['ern_next'] = {'lin': lin_model(ge_metrics['ern_past'])}
+    ge_metrics['div_next'] = {'lin': abs(lin_model(ge_metrics['div_past']))}
 
     print("Next Quarter Predictions (Linear Model, In Millions USD)\
             \n--------------------------------------------------------\n")
