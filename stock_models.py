@@ -4,6 +4,7 @@
 # CISC 7700X, Prof. Sverdlov
 
 import sys
+import math as m
 import numpy as np
 from numpy.linalg import inv
 
@@ -17,14 +18,8 @@ def print_form(sym, vals):
 
 def lin_model(Y):
     X = np.array((
-        (1, 1),
-        (1, 2),
-        (1, 3),
-        (1, 4),
-        (1, 5),
-        (1, 6),
-        (1, 7),
-        (1, 8)
+        (1, 1), (1, 2), (1, 3), (1, 4),
+        (1, 5), (1, 6), (1, 7), (1, 8)
         ))
     # 1.) X^T * X
     M = np.matmul(X.T, X)
@@ -36,8 +31,21 @@ def lin_model(Y):
     W = np.matmul(M2, Y)
     return round(np.matmul(np.array((1, 9)), W), 2)
 
-def log_model():
-    return
+def log_model(Y):
+    X = np.array((
+        (1, m.log(1)), (1, m.log(2)), (1, m.log(3)), (1, m.log(4)),
+        (1, m.log(5)), (1, m.log(6)), (1, m.log(7)), (1, m.log(8))
+        ))
+    # 1.) X^T * X
+    M = np.matmul(X.T, X)
+    # 2.) (X^T * X)^-1
+    IM = inv(M)
+    # 3.) (X^T * X)^-1 * X^T
+    M2 = np.matmul(IM, X.T)
+    # 4.) (X^T * X)^-1 * X^T * y
+    W = np.matmul(M2, Y)
+    return round(np.matmul(np.array((1, 9)), W), 2)
+
 def exp_model():
     return
 def pow_model():
@@ -140,6 +148,55 @@ def main():
     print_form('FB', fb_nextquarter_lin)
     print_form('PG', pg_nextquarter_lin)
     print_form('GE', ge_nextquarter_lin)
+    ############################################################################
+    #
+    # Next Quarter Revenue, Earnings & Dividends (Logarithmic Model Predictions)
+    #
+    ############################################################################
+    ibm_nextquarter_log = {
+            'rev': log_model(ibm_past8quarters['rev']),
+            'ern': log_model(ibm_past8quarters['ern']),
+            'div': abs(log_model(ibm_past8quarters['div']))
+            }
+    msft_nextquarter_log = {
+            'rev': log_model(msft_past8quarters['rev']),
+            'ern': log_model(msft_past8quarters['ern']),
+            'div': abs(log_model(msft_past8quarters['div']))
+            }
+    aapl_nextquarter_log = {
+            'rev': log_model(aapl_past8quarters['rev']),
+            'ern': log_model(aapl_past8quarters['ern']),
+            'div': abs(log_model(aapl_past8quarters['div']))
+            }
+    goog_nextquarter_log = {
+            'rev': log_model(goog_past8quarters['rev']),
+            'ern': log_model(goog_past8quarters['ern']),
+            'div': abs(log_model(goog_past8quarters['div']))
+            }
+    fb_nextquarter_log = {
+            'rev': log_model(fb_past8quarters['rev']),
+            'ern': log_model(fb_past8quarters['ern']),
+            'div': abs(log_model(fb_past8quarters['div']))
+            }
+    pg_nextquarter_log = {
+            'rev': log_model(pg_past8quarters['rev']),
+            'ern': log_model(pg_past8quarters['ern']),
+            'div': abs(log_model(pg_past8quarters['div']))
+            }
+    ge_nextquarter_log = {
+            'rev': log_model(ge_past8quarters['rev']),
+            'ern': log_model(ge_past8quarters['ern']),
+            'div': abs(log_model(ge_past8quarters['div']))
+            }
+    print("Next Quarter Predictions (Log. Model, In Millions USD)\
+            \n------------------------------------------------------\n")
+    print_form('IBM', ibm_nextquarter_log)
+    print_form('MSFT', msft_nextquarter_log)
+    print_form('AAPL', aapl_nextquarter_log)
+    print_form('GOOG', goog_nextquarter_log)
+    print_form('FB', fb_nextquarter_log)
+    print_form('PG', pg_nextquarter_log)
+    print_form('GE', ge_nextquarter_log)
 
 if __name__ == '__main__':
     main()
