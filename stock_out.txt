@@ -4,17 +4,17 @@ Next Quarter Predictions (In Millions USD)
 Symbol: IBM            
 
 	Revenue:            
-		Lin. model: 18754.21            
-		Log. model: 18998.42            
+		Lin. model: 18754.214            
+		Log. model: 18998.422            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
-		Lin. model: 2.28            
-		Log. model: 2.32            
+		Lin. model: 2.284            
+		Log. model: 2.324            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
-		Lin. model: 1.64            
+		Lin. model: 1.639            
 		Log. model: 1.62            
 		Exp. model: 0            
 		Pow. model: 0            
@@ -22,13 +22,13 @@ Symbol: IBM
 Symbol: MSFT            
 
 	Revenue:            
-		Lin. model: 36822.32            
-		Log. model: 35253.6            
+		Lin. model: 36822.321            
+		Log. model: 35253.596            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
-		Lin. model: 1.59            
-		Log. model: 1.49            
+		Lin. model: 1.588            
+		Log. model: 1.492            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
@@ -40,18 +40,18 @@ Symbol: MSFT
 Symbol: AAPL            
 
 	Revenue:            
-		Lin. model: 71965.04            
-		Log. model: 70854.61            
+		Lin. model: 71965.036            
+		Log. model: 70854.608            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
-		Lin. model: 0.88            
-		Log. model: 0.86            
+		Lin. model: 0.881            
+		Log. model: 0.855            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
-		Lin. model: 0.2            
-		Log. model: 0.19            
+		Lin. model: 0.196            
+		Log. model: 0.194            
 		Exp. model: 0            
 		Pow. model: 0            
 
@@ -59,12 +59,12 @@ Symbol: GOOG
 
 	Revenue:            
 		Lin. model: 45414.5            
-		Log. model: 43169.15            
+		Log. model: 43169.148            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
-		Lin. model: 13.44            
-		Log. model: 13.28            
+		Lin. model: 13.437            
+		Log. model: 13.275            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
@@ -76,13 +76,13 @@ Symbol: GOOG
 Symbol: FB            
 
 	Revenue:            
-		Lin. model: 20413.61            
-		Log. model: 19137.63            
+		Lin. model: 20413.607            
+		Log. model: 19137.628            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
-		Lin. model: 1.92            
-		Log. model: 1.81            
+		Lin. model: 1.918            
+		Log. model: 1.808            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
@@ -94,36 +94,36 @@ Symbol: FB
 Symbol: PG            
 
 	Revenue:            
-		Lin. model: 17953.39            
-		Log. model: 17696.33            
+		Lin. model: 17953.393            
+		Log. model: 17696.325            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
 		Lin. model: 0.8            
-		Log. model: 0.7            
+		Log. model: 0.699            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
-		Lin. model: 0.78            
-		Log. model: 0.77            
+		Lin. model: 0.781            
+		Log. model: 0.771            
 		Exp. model: 0            
 		Pow. model: 0            
 
 Symbol: GE            
 
 	Revenue:            
-		Lin. model: 21783.43            
-		Log. model: 21459.06            
+		Lin. model: 21783.429            
+		Log. model: 21459.057            
 		Exp. model: 0            
 		Pow. model: 0            
 	Earnings:            
-		Lin. model: 0.45            
-		Log. model: 0.11            
+		Lin. model: 0.447            
+		Log. model: 0.111            
 		Exp. model: 0            
 		Pow. model: 0            
 	Dividends:            
-		Lin. model: 0.03            
-		Log. model: 0.0            
+		Lin. model: 0.031            
+		Log. model: 0.003            
 		Exp. model: 0            
 		Pow. model: 0            
 
