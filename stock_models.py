@@ -62,9 +62,10 @@ def main():
             'div': np.array((0.42, 0.42, 0.46, 0.46, 0.46, 0.46, 0.51, 0.51))
             }
     aapl_past8quarters = {
-            'rev': np.array((1, 2, 3)),
-            'ern': np.array((1, 2, 3)),
-            'div': np.array((1, 2, 3))
+            'rev': np.array((53265.00, 62900.00, 84310.00, 58015.00, 53809.00, \
+                    64040.00, 91819.00, 58313.00)),
+            'ern': np.array((0.59, 0.73, 1.05, 0.62, 0.55, 0.76, 1.25, 0.64)),
+            'div': np.array((0.19, 0.18, 0.19, 0.18, 0.20, 0.19, 0.20, 0.19))
             }
     goog_past8quarters = {
             'rev': np.array((1, 2, 3)),
@@ -97,21 +98,27 @@ def main():
             'ern': lin_model(ibm_past8quarters['ern']),
             'div': lin_model(ibm_past8quarters['div'])
             }
-    fb_nextquarter_lin = {
-            'rev': lin_model(fb_past8quarters['rev']),
-            'ern': lin_model(fb_past8quarters['ern']),
-            'div': lin_model(fb_past8quarters['div'])
-            }
     msft_nextquarter_lin = {
             'rev': lin_model(msft_past8quarters['rev']),
             'ern': lin_model(msft_past8quarters['ern']),
             'div': lin_model(msft_past8quarters['div'])
             }
+    aapl_nextquarter_lin = {
+            'rev': lin_model(aapl_past8quarters['rev']),
+            'ern': lin_model(aapl_past8quarters['ern']),
+            'div': lin_model(aapl_past8quarters['div'])
+            }
+    fb_nextquarter_lin = {
+            'rev': lin_model(fb_past8quarters['rev']),
+            'ern': lin_model(fb_past8quarters['ern']),
+            'div': lin_model(fb_past8quarters['div'])
+            }
     print("Next Quarter Predictions (Linear Model)\
             \n---------------------------------------\n")
     print_form('IBM', ibm_nextquarter_lin)
-    print_form('FB', fb_nextquarter_lin)
     print_form('MSFT', msft_nextquarter_lin)
+    print_form('AAPL', aapl_nextquarter_lin)
+    print_form('FB', fb_nextquarter_lin)
 
 if __name__ == '__main__':
     main()
