@@ -40,7 +40,7 @@ def log_model(Y):
     M2 = np.matmul(IM, X.T)
     # 4.) (X^T * X)^-1 * X^T * y
     W = np.matmul(M2, Y)
-    return round(np.matmul(np.array((1, 9)), W), 2)
+    return round(np.matmul(np.array((1, m.log(9))), W), 2)
 
 def exp_model(Y):
     return 0
