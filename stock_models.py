@@ -86,7 +86,6 @@ def load_preds(m):
             'exp': exp_model(m['div_past']),
             'pow': pow_model(m['div_past'])
             }
-    return
 
 def main():
     ############################################################################
