@@ -9,9 +9,9 @@ from numpy.linalg import inv
 
 def print_form(sym, vals):
     s = f"""{sym}:\
-            \n\tRevenue:\t{vals['rev']}\t(in m $)\
-            \n\tEarnings:\t{vals['ern']}\t\t(in m $)\
-            \n\tDividends:\t{vals['div']}\t\t(in m $)\
+            \n\tRevenue:\t{vals['rev']}\
+            \n\tEarnings:\t{vals['ern']}\
+            \n\tDividends:\t{vals['div']}\
             \n"""
     print(s)
 
@@ -68,9 +68,10 @@ def main():
             'div': np.array((0.19, 0.18, 0.19, 0.18, 0.20, 0.19, 0.20, 0.19))
             }
     goog_past8quarters = {
-            'rev': np.array((1, 2, 3)),
-            'ern': np.array((1, 2, 3)),
-            'div': np.array((1, 2, 3))
+            'rev': np.array((32657.00, 33740.00, 39276.00, 36339.00, 38944.00, \
+                    40499.00, 46075.00, 41159.00)),
+            'ern': np.array((4.54, 13.06, 12.77, 9.50, 13.21, 10.12, 15.35, 9.87)),
+            'div': np.array((0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00))
             }
     fb_past8quarters = {
             'rev': np.array((13231.00, 13727.00, 16914.00, 15077.00, 16886.00, \
@@ -108,16 +109,22 @@ def main():
             'ern': lin_model(aapl_past8quarters['ern']),
             'div': lin_model(aapl_past8quarters['div'])
             }
+    goog_nextquarter_lin = {
+            'rev': lin_model(goog_past8quarters['rev']),
+            'ern': lin_model(goog_past8quarters['ern']),
+            'div': lin_model(goog_past8quarters['div'])
+            }
     fb_nextquarter_lin = {
             'rev': lin_model(fb_past8quarters['rev']),
             'ern': lin_model(fb_past8quarters['ern']),
             'div': lin_model(fb_past8quarters['div'])
             }
-    print("Next Quarter Predictions (Linear Model)\
-            \n---------------------------------------\n")
+    print("Next Quarter Predictions (Linear Model, in m $)\
+            \n-----------------------------------------------\n")
     print_form('IBM', ibm_nextquarter_lin)
     print_form('MSFT', msft_nextquarter_lin)
     print_form('AAPL', aapl_nextquarter_lin)
+    print_form('GOOG', goog_nextquarter_lin)
     print_form('FB', fb_nextquarter_lin)
 
 if __name__ == '__main__':
