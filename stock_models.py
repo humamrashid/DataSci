@@ -20,17 +20,16 @@ def lin_model(Y):
         ))
     # 1.) X^T * X
     M = np.matmul(X.T, X)
-    print("M = ", M)
     # 2.) (X^T * X)^-1
     IM = inv(M)
-    print("IM = ", IM)
     # 3.) (X^T * X)^-1 * X^T
     M2 = np.matmul(IM, X.T)
-    print("M2 = ", M2)
     # 4.) (X^T * X)^-1 * X^T * y
-    W = np.matmul(M2, Y)
-    print("W = ", W)
-    return
+    w = np.matmul(M2, Y)
+
+    next_quarter = round(np.matmul(np.array((1, 9)), w), 2)
+    print(next_quarter)
+
 def log_model():
     return
 def exp_model():
