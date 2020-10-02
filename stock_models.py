@@ -7,9 +7,12 @@ import sys
 import numpy as np
 from numpy.linalg import inv
 
-def print_vals(sym, vals):
-    s = f"""{sym}:\n\tRevenue:\t{vals['rev']}\n\tEarnings:\t{vals['ern']}\
-    \n\tDividends:\t{vals['div']}\n"""
+def print_form(sym, vals):
+    s = f"""{sym}:\
+            \n\tRevenue:\t{vals['rev']}\t(in m $)\
+            \n\tEarnings:\t{vals['ern']}\t\t(in m $)\
+            \n\tDividends:\t{vals['div']}\t\t(in m $)\
+            \n"""
     print(s)
 
 def lin_model(Y):
@@ -53,9 +56,10 @@ def main():
             'div': np.array((1.57, 1.57, 1.55, 1.57, 1.62, 1.62, 1.62, 1.62))
             }
     msft_past8quarters = {
-            'rev': np.array((1, 2, 3)),
-            'ern': np.array((1, 2, 3)),
-            'div': np.array((1, 2, 3))
+            'rev': np.array((30085.00, 29084.00, 32471.00, 30571.00, 33717.00, \
+                    33055.00, 36906.00, 35021.00)),
+            'ern': np.array((1.14, 1.14, 1.08, 1.14, 1.71, 1.38, 1.51, 1.40)),
+            'div': np.array((0.42, 0.42, 0.46, 0.46, 0.46, 0.46, 0.51, 0.51))
             }
     aapl_past8quarters = {
             'rev': np.array((1, 2, 3)),
@@ -85,7 +89,7 @@ def main():
             }
     ############################################################################
     #
-    # Next Quarter Revenue, Earnings & Dividends (Linear Model)
+    # Next Quarter Revenue, Earnings & Dividends (Linear Model Predictions)
     #
     ############################################################################
     ibm_nextquarter_lin = {
@@ -98,9 +102,16 @@ def main():
             'ern': lin_model(fb_past8quarters['ern']),
             'div': lin_model(fb_past8quarters['div'])
             }
-    print("Next Quarter Predictions\n########################\n")
-    print_vals('IBM', ibm_nextquarter_lin)
-    print_vals('FB', fb_nextquarter_lin)
+    msft_nextquarter_lin = {
+            'rev': lin_model(msft_past8quarters['rev']),
+            'ern': lin_model(msft_past8quarters['ern']),
+            'div': lin_model(msft_past8quarters['div'])
+            }
+    print("Next Quarter Predictions (Linear Model)\
+            \n---------------------------------------\n")
+    print_form('IBM', ibm_nextquarter_lin)
+    print_form('FB', fb_nextquarter_lin)
+    print_form('MSFT', msft_nextquarter_lin)
 
 if __name__ == '__main__':
     main()
