@@ -67,6 +67,27 @@ def print_metrics(m):
             \n"""
     print(s)
 
+def load_preds(m):
+    m['rev_next'] = {
+            'lin': lin_model(m['rev_past']),
+            'log': log_model(m['rev_past']),
+            'exp': exp_model(m['rev_past']),
+            'pow': pow_model(m['rev_past'])
+            }
+    m['ern_next'] = {
+            'lin': lin_model(m['ern_past']),
+            'log': log_model(m['ern_past']),
+            'exp': exp_model(m['ern_past']),
+            'pow': pow_model(m['ern_past'])
+            }
+    m['div_next'] = {
+            'lin': lin_model(m['div_past']),
+            'log': log_model(m['div_past']),
+            'exp': exp_model(m['div_past']),
+            'pow': pow_model(m['div_past'])
+            }
+    return
+
 def main():
     ############################################################################
     #
@@ -141,138 +162,13 @@ def main():
     # Next Quarter Revenue, Earnings & Dividends (Predicted)
     #
     ############################################################################
-    ibm_metrics['rev_next'] = {
-            'lin': lin_model(ibm_metrics['rev_past']),
-            'log': log_model(ibm_metrics['rev_past']),
-            'exp': exp_model(ibm_metrics['rev_past']),
-            'pow': pow_model(ibm_metrics['rev_past'])
-            }
-    ibm_metrics['ern_next'] = {
-            'lin': lin_model(ibm_metrics['ern_past']),
-            'log': log_model(ibm_metrics['ern_past']),
-            'exp': exp_model(ibm_metrics['ern_past']),
-            'pow': pow_model(ibm_metrics['ern_past'])
-            }
-    ibm_metrics['div_next'] = {
-            'lin': lin_model(ibm_metrics['div_past']),
-            'log': log_model(ibm_metrics['div_past']),
-            'exp': exp_model(ibm_metrics['div_past']),
-            'pow': pow_model(ibm_metrics['div_past'])
-            }
-
-    msft_metrics['rev_next'] = {
-            'lin': lin_model(msft_metrics['rev_past']),
-            'log': log_model(msft_metrics['rev_past']),
-            'exp': exp_model(msft_metrics['rev_past']),
-            'pow': pow_model(msft_metrics['rev_past'])
-            }
-    msft_metrics['ern_next'] = {
-            'lin': lin_model(msft_metrics['ern_past']),
-            'log': log_model(msft_metrics['ern_past']),
-            'exp': exp_model(msft_metrics['ern_past']),
-            'pow': pow_model(msft_metrics['ern_past'])
-            }
-    msft_metrics['div_next'] = {
-            'lin': lin_model(msft_metrics['div_past']),
-            'log': log_model(msft_metrics['div_past']),
-            'exp': exp_model(msft_metrics['div_past']),
-            'pow': pow_model(msft_metrics['div_past'])
-            }
-
-    aapl_metrics['rev_next'] = {
-            'lin': lin_model(aapl_metrics['rev_past']),
-            'log': log_model(aapl_metrics['rev_past']),
-            'exp': exp_model(aapl_metrics['rev_past']),
-            'pow': pow_model(aapl_metrics['rev_past'])
-            }
-    aapl_metrics['ern_next'] = {
-            'lin': lin_model(aapl_metrics['ern_past']),
-            'log': log_model(aapl_metrics['ern_past']),
-            'exp': exp_model(aapl_metrics['ern_past']),
-            'pow': pow_model(aapl_metrics['ern_past'])
-            }
-    aapl_metrics['div_next'] = {
-            'lin': lin_model(aapl_metrics['div_past']),
-            'log': log_model(aapl_metrics['div_past']),
-            'exp': exp_model(aapl_metrics['div_past']),
-            'pow': pow_model(aapl_metrics['div_past'])
-            }
-
-    goog_metrics['rev_next'] = {
-            'lin': lin_model(goog_metrics['rev_past']),
-            'log': log_model(goog_metrics['rev_past']),
-            'exp': exp_model(goog_metrics['rev_past']),
-            'pow': pow_model(goog_metrics['rev_past'])
-            }
-    goog_metrics['ern_next'] = {
-            'lin': lin_model(goog_metrics['ern_past']),
-            'log': log_model(goog_metrics['ern_past']),
-            'exp': exp_model(goog_metrics['ern_past']),
-            'pow': pow_model(goog_metrics['ern_past'])
-            }
-    goog_metrics['div_next'] = {
-            'lin': lin_model(goog_metrics['div_past']),
-            'log': log_model(goog_metrics['div_past']),
-            'exp': exp_model(goog_metrics['div_past']),
-            'pow': pow_model(goog_metrics['div_past'])
-            }
-
-    fb_metrics['rev_next'] = {
-            'lin': lin_model(fb_metrics['rev_past']),
-            'log': log_model(fb_metrics['rev_past']),
-            'exp': exp_model(fb_metrics['rev_past']),
-            'pow': pow_model(fb_metrics['rev_past'])
-            }
-    fb_metrics['ern_next'] = {
-            'lin': lin_model(fb_metrics['ern_past']),
-            'log': log_model(fb_metrics['ern_past']),
-            'exp': exp_model(fb_metrics['ern_past']),
-            'pow': pow_model(fb_metrics['ern_past'])
-            }
-    fb_metrics['div_next'] = {
-            'lin': lin_model(fb_metrics['div_past']),
-            'log': log_model(fb_metrics['div_past']),
-            'exp': exp_model(fb_metrics['div_past']),
-            'pow': pow_model(fb_metrics['div_past'])
-            }
-
-    pg_metrics['rev_next'] = {
-            'lin': lin_model(pg_metrics['rev_past']),
-            'log': log_model(pg_metrics['rev_past']),
-            'exp': exp_model(pg_metrics['rev_past']),
-            'pow': pow_model(pg_metrics['rev_past'])
-            }
-    pg_metrics['ern_next'] = {
-            'lin': lin_model(pg_metrics['ern_past']),
-            'log': log_model(pg_metrics['ern_past']),
-            'exp': exp_model(pg_metrics['ern_past']),
-            'pow': pow_model(pg_metrics['ern_past'])
-            }
-    pg_metrics['div_next'] = {
-            'lin': lin_model(pg_metrics['div_past']),
-            'log': log_model(pg_metrics['div_past']),
-            'exp': exp_model(pg_metrics['div_past']),
-            'pow': pow_model(pg_metrics['div_past'])
-            }
-
-    ge_metrics['rev_next'] = {
-            'lin': lin_model(ge_metrics['rev_past']),
-            'log': log_model(ge_metrics['rev_past']),
-            'exp': exp_model(ge_metrics['rev_past']),
-            'pow': pow_model(ge_metrics['rev_past'])
-            }
-    ge_metrics['ern_next'] = {
-            'lin': lin_model(ge_metrics['ern_past']),
-            'log': log_model(ge_metrics['ern_past']),
-            'exp': exp_model(ge_metrics['ern_past']),
-            'pow': pow_model(ge_metrics['ern_past'])
-            }
-    ge_metrics['div_next'] = {
-            'lin': lin_model(ge_metrics['div_past']),
-            'log': log_model(ge_metrics['div_past']),
-            'exp': exp_model(ge_metrics['div_past']),
-            'pow': pow_model(ge_metrics['div_past'])
-            }
+    load_preds(ibm_metrics)
+    load_preds(msft_metrics)
+    load_preds(aapl_metrics)
+    load_preds(goog_metrics)
+    load_preds(fb_metrics)
+    load_preds(pg_metrics)
+    load_preds(ge_metrics)
 
     metrics = [ibm_metrics, msft_metrics, aapl_metrics, goog_metrics, \
             fb_metrics, pg_metrics, ge_metrics]
