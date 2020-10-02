@@ -8,14 +8,6 @@ import math as m
 import numpy as np
 from numpy.linalg import inv
 
-def print_metrics(m):
-    s = f"""{m['sym']}:\
-            \n\tRevenue:\t{m['rev']}\
-            \n\tEarnings:\t{m['ern']}\
-            \n\tDividends:\t{m['div']}\
-            \n"""
-    print(s)
-
 def lin_model(Y):
     X = np.array((
         (1, 1), (1, 2),
@@ -54,6 +46,26 @@ def exp_model(Y):
     return 0
 def pow_model(Y):
     return 0
+
+def print_metrics(m):
+    s = f"""Symbol: {m['sym']}\
+            \n\n\tRevenue:\
+            \n\t\tLin. model: {m['rev_next']['lin']}\
+            \n\t\tLog. model: {m['rev_next']['log']}\
+            \n\t\tExp. model: {m['rev_next']['exp']}\
+            \n\t\tPow. model: {m['rev_next']['pow']}\
+            \n\tEarnings:\
+            \n\t\tLin. model: {m['ern_next']['lin']}\
+            \n\t\tLog. model: {m['ern_next']['log']}\
+            \n\t\tExp. model: {m['ern_next']['exp']}\
+            \n\t\tPow. model: {m['ern_next']['pow']}\
+            \n\tDividends:\
+            \n\t\tLin. model: {m['div_next']['lin']}\
+            \n\t\tLog. model: {m['div_next']['log']}\
+            \n\t\tExp. model: {m['div_next']['exp']}\
+            \n\t\tPow. model: {m['div_next']['pow']}\
+            \n"""
+    print(s)
 
 def main():
     ############################################################################
@@ -262,10 +274,10 @@ def main():
             'pow': pow_model(ge_metrics['div_past'])
             }
 
-    metrics = [ibm_metics, msft_metrics, aapl_metrics, goog_metrics, \
+    metrics = [ibm_metrics, msft_metrics, aapl_metrics, goog_metrics, \
             fb_metrics, pg_metrics, ge_metrics]
-    print("Next Quarter Predictions (Linear Model, In Millions USD)\
-            \n--------------------------------------------------------\n")
+    print("Next Quarter Predictions (In Millions USD)\
+            \n------------------------------------------\n")
     for m in metrics:
         print_metrics(m)
 
