@@ -5,8 +5,31 @@
 
 import sys
 import numpy as np
+from numpy.linalg import inv
 
-def lin_model():
+def lin_model(Y):
+    X = np.array((
+        (1, 1),
+        (1, 2),
+        (1, 3),
+        (1, 4),
+        (1, 5),
+        (1, 6),
+        (1, 7),
+        (1, 8)
+        ))
+    # 1.) X^T * X
+    M = np.matmul(X.T, X)
+    print("M = ", M)
+    # 2.) (X^T * X)^-1
+    IM = inv(M)
+    print("IM = ", IM)
+    # 3.) (X^T * X)^-1 * X^T
+    M2 = np.matmul(IM, X.T)
+    print("M2 = ", M2)
+    # 4.) (X^T * X)^-1 * X^T * y
+    W = np.matmul(M2, Y)
+    print("W = ", W)
     return
 def log_model():
     return
@@ -37,7 +60,7 @@ def main():
             'div': np.array((1, 2, 3))
             }
     fb_metrics = {
-            'rev': np.array((1, 2, 3)),
+            'rev': np.array((5382, 6436, 7011, 8809, 8032, 9321, 10328, 12972)),
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
@@ -51,7 +74,7 @@ def main():
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
-    print(ibm_metrics)
+    lin_model(fb_metrics['rev'])
     return
 
 if __name__ == '__main__':
