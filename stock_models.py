@@ -25,10 +25,8 @@ def lin_model(Y):
     # 3.) (X^T * X)^-1 * X^T
     M2 = np.matmul(IM, X.T)
     # 4.) (X^T * X)^-1 * X^T * y
-    w = np.matmul(M2, Y)
-
-    next_quarter = round(np.matmul(np.array((1, 9)), w), 2)
-    print(next_quarter)
+    W = np.matmul(M2, Y)
+    return round(np.matmul(np.array((1, 9)), W), 2)
 
 def log_model():
     return
@@ -38,43 +36,59 @@ def pow_model():
     return
 
 def main():
-    ibm_metrics = {
+    ############################################################################
+    #
+    # Past 8 Quarters Revenue, Earnings & Dividends
+    #
+    ############################################################################
+    ibm_past8quarters = {
             'rev': np.array((1, 2, 3)),
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
-    msft_metrics = {
+    msft_past8quarters = {
             'rev': np.array((1, 2, 3)),
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
-    aapl_metrics = {
+    aapl_past8quarters = {
             'rev': np.array((1, 2, 3)),
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
-    goog_metrics = {
+    goog_past8quarters = {
             'rev': np.array((1, 2, 3)),
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
-    fb_metrics = {
-            'rev': np.array((5382, 6436, 7011, 8809, 8032, 9321, 10328, 12972)),
+    fb_past8quarters = {
+            'rev': np.array((13231, 13727, 16914, 15077, 16886, 17652, 21082, \
+                    17737)),
             'ern': np.array((1, 2, 3)),
-            'div': np.array((1, 2, 3))
+            'div': np.array((0, 0, 0, 0, 0, 0, 0, 0))
             }
-    pg_metrics = {
+    pg_past8quarters = {
             'rev': np.array((1, 2, 3)),
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
-    ge_metrics = {
+    ge_past8quarters = {
             'rev': np.array((1, 2, 3)),
             'ern': np.array((1, 2, 3)),
             'div': np.array((1, 2, 3))
             }
-    lin_model(fb_metrics['rev'])
-    return
+    ############################################################################
+    #
+    # Next Quarter Revenue, Earnings & Dividends, Linear Model
+    #
+    ############################################################################
+    fb_nextquarter_lin = {
+            'rev': lin_model(fb_past8quarters['rev']),
+            #'ern': lin_model(fb_past8quarters['ern']),
+            #'div': lin_model(fb_past8_quarters['div'])
+            }
+
+    print(fb_nextquarter_lin['rev'])
 
 if __name__ == '__main__':
     main()
