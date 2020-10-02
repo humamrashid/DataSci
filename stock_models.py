@@ -23,7 +23,9 @@ def lin_model(Y):
     M2 = np.matmul(IM, X.T)
     # 4.) (X^T * X)^-1 * X^T * y
     W = np.matmul(M2, Y)
-    return round(np.matmul(np.array((1, 9)), W), 3)
+    # Next quarter prediction
+    pred = np.matmul(np.array((1, 9)), W)
+    return round(pred, 3)
 
 def log_model(Y):
     X = np.array((
@@ -40,7 +42,9 @@ def log_model(Y):
     M2 = np.matmul(IM, X.T)
     # 4.) (X^T * X)^-1 * X^T * y
     W = np.matmul(M2, Y)
-    return round(np.matmul(np.array((1, m.log(9))), W), 3)
+    # Next quarter prediction
+    pred = np.matmul(np.array((1, m.log(9))), W)
+    return round(pred, 3)
 
 def exp_model(Y):
     return 0
