@@ -157,15 +157,12 @@ def main():
     ge_metrics['ern_next'] = {'lin': lin_model(ge_metrics['ern_past'])}
     ge_metrics['div_next'] = {'lin': abs(lin_model(ge_metrics['div_past']))}
 
+    metrics = [ibm_metics, msft_metrics, aapl_metrics, goog_metrics, \
+            fb_metrics, pg_metrics, ge_metrics]
     print("Next Quarter Predictions (Linear Model, In Millions USD)\
             \n--------------------------------------------------------\n")
-    print_form('IBM', ibm_nextquarter_lin)
-    print_form('MSFT', msft_nextquarter_lin)
-    print_form('AAPL', aapl_nextquarter_lin)
-    print_form('GOOG', goog_nextquarter_lin)
-    print_form('FB', fb_nextquarter_lin)
-    print_form('PG', pg_nextquarter_lin)
-    print_form('GE', ge_nextquarter_lin)
+    for m in metrics:
+        print_metrics(m)
     ############################################################################
     #
     # Next Quarter nqrenue, Earnings & nqdidends (Logarithmic Model Predictions)
@@ -208,13 +205,13 @@ def main():
     #        }
     #print("Next Quarter Predictions (Log. Model, In Millions USD)\
     #        \n------------------------------------------------------\n")
-    #print_form('IBM', ibm_nextquarter_log)
-    #print_form('MSFT', msft_nextquarter_log)
-    #print_form('AAPL', aapl_nextquarter_log)
-    #print_form('GOOG', goog_nextquarter_log)
-    #print_form('FB', fb_nextquarter_log)
-    #print_form('PG', pg_nextquarter_log)
-    #print_form('GE', ge_nextquarter_log)
+    #print_metrics('IBM', ibm_nextquarter_log)
+    #print_metrics('MSFT', msft_nextquarter_log)
+    #print_metrics('AAPL', aapl_nextquarter_log)
+    #print_metrics('GOOG', goog_nextquarter_log)
+    #print_metrics('FB', fb_nextquarter_log)
+    #print_metrics('PG', pg_nextquarter_log)
+    #print_metrics('GE', ge_nextquarter_log)
 
 if __name__ == '__main__':
     main()
