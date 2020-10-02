@@ -79,7 +79,7 @@ def main():
             }
     ############################################################################
     #
-    # Next Quarter Revenue, Earnings & Dividends, Linear Model
+    # Next Quarter Revenue, Earnings & Dividends (Linear Model)
     #
     ############################################################################
     fb_nextquarter_lin = {
