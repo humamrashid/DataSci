@@ -173,22 +173,15 @@ def main():
             'div_past': np.array((0.14, 0.12, 0.14, 0.01, 0.03, 0.01, 0.03, \
                     0.01))
             }
+    metrics = [ibm_metrics, msft_metrics, aapl_metrics, goog_metrics, \
+            fb_metrics, pg_metrics, ge_metrics]
     ############################################################################
     #
     # Next Quarter Revenue, Earnings & Dividends (Predicted)
     #
     ############################################################################
-    load_preds(ibm_metrics)
-    #load_preds(msft_metrics)
-    #load_preds(aapl_metrics)
-    #load_preds(goog_metrics)
-    #load_preds(fb_metrics)
-    #load_preds(pg_metrics)
-    #load_preds(ge_metrics)
-
-    #metrics = [ibm_metrics, msft_metrics, aapl_metrics, goog_metrics, \
-            #fb_metrics, pg_metrics, ge_metrics]
-    metrics = [ibm_metrics]
+    for m in metrics:
+       load_preds(m)
     print("Next Quarter Predictions (In Millions USD)\
             \n------------------------------------------\n")
     for m in metrics:
