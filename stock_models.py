@@ -129,6 +129,8 @@ def main():
     #
     # Past 8 Quarters Revenue, Earnings & Dividends
     #
+    # (Numbers used are from (Q2, 2018) to (Q1, 2020), inclusive)
+    #
     ############################################################################
     ibm_metrics = {
             'sym': 'IBM',
