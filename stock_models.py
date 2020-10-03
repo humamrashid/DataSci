@@ -15,15 +15,10 @@ def lin_model(Y):
         (1, 5), (1, 6),
         (1, 7), (1, 8)
         ))
-    # 1.) X^T * X
     M = np.matmul(X.T, X)
-    # 2.) (X^T * X)^-1
     IM = inv(M)
-    # 3.) (X^T * X)^-1 * X^T
     M2 = np.matmul(IM, X.T)
-    # 4.) (X^T * X)^-1 * X^T * y
     W = np.matmul(M2, Y)
-    # Next quarter prediction
     pred = np.matmul(np.array((1, 9)), W)
     return round(pred, 3)
 
@@ -34,6 +29,23 @@ def log_model(Y):
         (1, m.log(5)), (1, m.log(6)),
         (1, m.log(7)), (1, m.log(8))
         ))
+    M = np.matmul(X.T, X)
+    IM = inv(M)
+    M2 = np.matmul(IM, X.T)
+    W = np.matmul(M2, Y)
+    pred = np.matmul(np.array((1, m.log(9))), W)
+    return round(pred, 3)
+
+def exp_model(Y):
+    Y_ln = []
+    for i in Y:
+        Y_ln.append(m.log(i))
+    X = np.array((
+        (1, 1), (1, 2),
+        (1, 3), (1, 4),
+        (1, 5), (1, 6),
+        (1, 7), (1, 8)
+        ))
     # 1.) X^T * X
     M = np.matmul(X.T, X)
     # 2.) (X^T * X)^-1
@@ -41,13 +53,14 @@ def log_model(Y):
     # 3.) (X^T * X)^-1 * X^T
     M2 = np.matmul(IM, X.T)
     # 4.) (X^T * X)^-1 * X^T * y
-    W = np.matmul(M2, Y)
+    W = np.matmul(M2, Y_ln)
     # Next quarter prediction
-    pred = np.matmul(np.array((1, m.log(9))), W)
+    print("exp(B) = ", m.exp(W[1]))
+    W[1] = m.exp(W[1])
+    print("B = ", W[1])
+    pred = np.matmul(np.array((1, 9)), W)
     return round(pred, 3)
 
-def exp_model(Y):
-    return 0
 def pow_model(Y):
     return 0
 
@@ -166,19 +179,20 @@ def main():
     #
     ############################################################################
     load_preds(ibm_metrics)
-    load_preds(msft_metrics)
-    load_preds(aapl_metrics)
-    load_preds(goog_metrics)
-    load_preds(fb_metrics)
-    load_preds(pg_metrics)
-    load_preds(ge_metrics)
+    #load_preds(msft_metrics)
+    #load_preds(aapl_metrics)
+    #load_preds(goog_metrics)
+    #load_preds(fb_metrics)
+    #load_preds(pg_metrics)
+    #load_preds(ge_metrics)
 
-    metrics = [ibm_metrics, msft_metrics, aapl_metrics, goog_metrics, \
-            fb_metrics, pg_metrics, ge_metrics]
+    #metrics = [ibm_metrics, msft_metrics, aapl_metrics, goog_metrics, \
+            #fb_metrics, pg_metrics, ge_metrics]
+    metrics = [ibm_metrics]
     print("Next Quarter Predictions (In Millions USD)\
             \n------------------------------------------\n")
     for m in metrics:
-        print_metrics(m)
+       print_metrics(m)
 
 if __name__ == '__main__':
     main()
