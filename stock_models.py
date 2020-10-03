@@ -39,7 +39,7 @@ def log_model(Y):
 def exp_model(Y):
     Y_ln = []
     for i in Y:
-        Y_ln.append(m.log(i))
+        Y_ln.append(m.log(abs(i)))
     X = np.array((
         (1, 1), (1, 2),
         (1, 3), (1, 4),
@@ -97,12 +97,20 @@ def load_preds(m):
             'exp': exp_model(m['ern_past']),
             'pow': pow_model(m['ern_past'])
             }
-    m['div_next'] = {
-            'lin': lin_model(m['div_past']),
-            'log': log_model(m['div_past']),
-            'exp': exp_model(m['div_past']),
-            'pow': pow_model(m['div_past'])
-            }
+    if m['div_past'] is None:
+        m['div_next'] = {
+                'lin': 0.00,
+                'log': 0.00,
+                'exp': 0.00,
+                'pow': 0.00
+                }
+    else:
+        m['div_next'] = {
+                'lin': lin_model(m['div_past']),
+                'log': log_model(m['div_past']),
+                'exp': exp_model(m['div_past']),
+                'pow': pow_model(m['div_past'])
+                }
 
 def main():
     ############################################################################
@@ -143,8 +151,7 @@ def main():
                     38944.00, 40499.00, 46075.00, 41159.00)),
             'ern_past': np.array((4.54, 13.06, 12.77, 9.50, 13.21, 10.12, \
                     15.35, 9.87)),
-            'div_past': np.array((0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, \
-                    0.00))
+            'div_past': None
             }
     fb_metrics = {
             'sym': 'FB',
@@ -152,8 +159,7 @@ def main():
                     16886.00, 17652.00, 21082.00, 17737.00)),
             'ern_past': np.array((1.74, 1.76, 2.38, 0.85, 0.91, 2.12, 2.56, \
                     1.71)),
-            'div_past': np.array((0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, \
-                    0.00))
+            'div_past': None
             }
     pg_metrics = {
             'sym': 'PG',
