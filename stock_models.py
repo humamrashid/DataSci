@@ -113,9 +113,9 @@ def print_metrics(m):
             \n\t\tPow. model: {m['ern_next']['pow']}, error: {m['ern_err']['pow']}\
             \n\tDividends:\
             \n\t\tLin. model: {abs(m['div_next']['lin'])}, error: {m['div_err']['lin']}\
-            \n\t\tLog. model: {abs(m['div_next']['log'])}, error: {m['div_err']['lin']}\
-            \n\t\tExp. model: {abs(m['div_next']['exp'])}, error: {m['div_err']['lin']}\
-            \n\t\tPow. model: {abs(m['div_next']['pow'])}, error: {m['div_err']['lin']}\
+            \n\t\tLog. model: {abs(m['div_next']['log'])}, error: {m['div_err']['log']}\
+            \n\t\tExp. model: {abs(m['div_next']['exp'])}, error: {m['div_err']['exp']}\
+            \n\t\tPow. model: {abs(m['div_next']['pow'])}, error: {m['div_err']['pow']}\
             \n"""
     print(s)
 

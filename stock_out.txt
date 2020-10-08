@@ -12,9 +12,9 @@ Symbol: IBM
 		Pow. model: 2.946, error: -1.426            
 	Dividends:            
 		Lin. model: 1.639, error: -0.009            
-		Log. model: 1.62, error: -0.009            
-		Exp. model: 9.494, error: -0.009            
-		Pow. model: 2.68, error: -0.009            
+		Log. model: 1.62, error: 0.01            
+		Exp. model: 9.494, error: -7.864            
+		Pow. model: 2.68, error: 0.01            
 
 Symbol: MSFT            
 
@@ -30,9 +30,9 @@ Symbol: MSFT
 		Pow. model: 2.623, error: -1.163            
 	Dividends:            
 		Lin. model: 0.52, error: -0.01            
-		Log. model: 0.5, error: -0.01            
-		Exp. model: 8.355, error: -0.01            
-		Pow. model: 1.514, error: -0.01            
+		Log. model: 0.5, error: 0.01            
+		Exp. model: 8.355, error: -7.845            
+		Pow. model: 1.514, error: 0.01            
 
 Symbol: AAPL            
 
@@ -48,9 +48,9 @@ Symbol: AAPL
 		Pow. model: 2.005, error: -1.355            
 	Dividends:            
 		Lin. model: 0.196, error: 0.014            
-		Log. model: 0.194, error: 0.014            
-		Exp. model: 7.373, error: 0.014            
-		Pow. model: 0.556, error: 0.014            
+		Log. model: 0.194, error: 0.016            
+		Exp. model: 7.373, error: -7.163            
+		Pow. model: 0.556, error: 0.016            
 
 Symbol: GOOG            
 
@@ -102,9 +102,9 @@ Symbol: PG
 		Pow. model: 2.718, error: -1.648            
 	Dividends:            
 		Lin. model: 0.781, error: 0.039            
-		Log. model: 0.771, error: 0.039            
-		Exp. model: 8.753, error: 0.039            
-		Pow. model: 1.938, error: 0.039            
+		Log. model: 0.771, error: 0.049            
+		Exp. model: 8.753, error: -7.933            
+		Pow. model: 1.938, error: 0.049            
 
 Symbol: GE            
 
@@ -120,7 +120,7 @@ Symbol: GE
 		Pow. model: 0.627, error: -0.887            
 	Dividends:            
 		Lin. model: 0.031, error: 0.061            
-		Log. model: 0.003, error: 0.061            
-		Exp. model: 4.499, error: 0.061            
-		Pow. model: 1.001, error: 0.061            
+		Log. model: 0.003, error: 0.033            
+		Exp. model: 4.499, error: -4.469            
+		Pow. model: 1.001, error: 0.033            
 
