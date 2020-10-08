@@ -4,126 +4,287 @@ Next Quarter Predictions (In Millions USD)
 Symbol: IBM            
 
 	Revenue:            
-		Lin. model: 18754.214, error: -631.214            
-		Log. model: 18998.422, error: -875.422            
-		Exp. model: 18.834, error: 18104.166            
-		Pow. model: 12.046, error: 18110.954            
+		Lin. model: 18754.214,            
+		error: -631.214
+            
+		Log. model: 18998.422,            
+		error: -875.422
+            
+		Exp. model: 18.834,            
+		error: 18104.166
+            
+		Pow. model: 12.046,            
+		error: 18110.954
+            
 	Earnings:            
-		Lin. model: 2.284, error: -0.764            
-		Log. model: 2.324, error: -0.804            
-		Exp. model: 9.68, error: -8.16            
-		Pow. model: 2.946, error: -1.426            
+		Lin. model: 2.284,            
+		error: -0.764
+            
+		Log. model: 2.324,            
+		error: -0.804
+            
+		Exp. model: 9.68,            
+		error: -8.16
+            
+		Pow. model: 2.946,            
+		error: -1.426
+            
 	Dividends:            
-		Lin. model: 1.639, error: -0.009            
-		Log. model: 1.62, error: 0.01            
-		Exp. model: 9.494, error: -7.864            
-		Pow. model: 2.68, error: 0.01            
+		Lin. model: 1.639,            
+		error: -0.009
+            
+		Log. model: 1.62,            
+		error: 0.01
+            
+		Exp. model: 9.494,            
+		error: -7.864
+            
+		Pow. model: 2.68,            
+		error: 0.01
 
 Symbol: MSFT            
 
 	Revenue:            
-		Lin. model: 36822.321, error: 1210.679            
-		Log. model: 35253.596, error: 2779.404            
-		Exp. model: 19.522, error: 38013.478            
-		Pow. model: 12.678, error: 38020.322            
+		Lin. model: 36822.321,            
+		error: 1210.679
+            
+		Log. model: 35253.596,            
+		error: 2779.404
+            
+		Exp. model: 19.522,            
+		error: 38013.478
+            
+		Pow. model: 12.678,            
+		error: 38020.322
+            
 	Earnings:            
-		Lin. model: 1.588, error: -0.128            
-		Log. model: 1.492, error: -0.032            
-		Exp. model: 9.483, error: -8.023            
-		Pow. model: 2.623, error: -1.163            
+		Lin. model: 1.588,            
+		error: -0.128
+            
+		Log. model: 1.492,            
+		error: -0.032
+            
+		Exp. model: 9.483,            
+		error: -8.023
+            
+		Pow. model: 2.623,            
+		error: -1.163
+            
 	Dividends:            
-		Lin. model: 0.52, error: -0.01            
-		Log. model: 0.5, error: 0.01            
-		Exp. model: 8.355, error: -7.845            
-		Pow. model: 1.514, error: 0.01            
+		Lin. model: 0.52,            
+		error: -0.01
+            
+		Log. model: 0.5,            
+		error: 0.01
+            
+		Exp. model: 8.355,            
+		error: -7.845
+            
+		Pow. model: 1.514,            
+		error: 0.01
 
 Symbol: AAPL            
 
 	Revenue:            
-		Lin. model: 71965.036, error: -12280.036            
-		Log. model: 70854.608, error: -11169.608            
-		Exp. model: 20.164, error: 59664.836            
-		Pow. model: 13.354, error: 59671.646            
+		Lin. model: 71965.036,            
+		error: -12280.036
+            
+		Log. model: 70854.608,            
+		error: -11169.608
+            
+		Exp. model: 20.164,            
+		error: 59664.836
+            
+		Pow. model: 13.354,            
+		error: 59671.646
+            
 	Earnings:            
-		Lin. model: 0.881, error: -0.231            
-		Log. model: 0.855, error: -0.205            
-		Exp. model: 8.823, error: -8.173            
-		Pow. model: 2.005, error: -1.355            
+		Lin. model: 0.881,            
+		error: -0.231
+            
+		Log. model: 0.855,            
+		error: -0.205
+            
+		Exp. model: 8.823,            
+		error: -8.173
+            
+		Pow. model: 2.005,            
+		error: -1.355
+            
 	Dividends:            
-		Lin. model: 0.196, error: 0.014            
-		Log. model: 0.194, error: 0.016            
-		Exp. model: 7.373, error: -7.163            
-		Pow. model: 0.556, error: 0.016            
+		Lin. model: 0.196,            
+		error: 0.014
+            
+		Log. model: 0.194,            
+		error: 0.016
+            
+		Exp. model: 7.373,            
+		error: -7.163
+            
+		Pow. model: 0.556,            
+		error: 0.016
 
 Symbol: GOOG            
 
 	Revenue:            
-		Lin. model: 45414.5, error: -7117.5            
-		Log. model: 43169.148, error: -4872.148            
-		Exp. model: 19.741, error: 38277.259            
-		Pow. model: 12.896, error: 38284.104            
+		Lin. model: 45414.5,            
+		error: -7117.5
+            
+		Log. model: 43169.148,            
+		error: -4872.148
+            
+		Exp. model: 19.741,            
+		error: 38277.259
+            
+		Pow. model: 12.896,            
+		error: 38284.104
+            
 	Earnings:            
-		Lin. model: 13.437, error: -3.307            
-		Log. model: 13.275, error: -3.145            
-		Exp. model: 11.687, error: -1.557            
-		Pow. model: 4.977, error: 5.153            
+		Lin. model: 13.437,            
+		error: -3.307
+            
+		Log. model: 13.275,            
+		error: -3.145
+            
+		Exp. model: 11.687,            
+		error: -1.557
+            
+		Pow. model: 4.977,            
+		error: 5.153
+            
 	Dividends:            
-		Lin. model: 0.0, error: 0.0            
-		Log. model: 0.0, error: 0.0            
-		Exp. model: 0.0, error: 0.0            
-		Pow. model: 0.0, error: 0.0            
+		Lin. model: 0.0,            
+		error: 0.0
+            
+		Log. model: 0.0,            
+		error: 0.0
+            
+		Exp. model: 0.0,            
+		error: 0.0
+            
+		Pow. model: 0.0,            
+		error: 0.0
 
 Symbol: FB            
 
 	Revenue:            
-		Lin. model: 20413.607, error: -1726.607            
-		Log. model: 19137.628, error: -450.628            
-		Exp. model: 18.954, error: 18668.046            
-		Pow. model: 12.103, error: 18674.897            
+		Lin. model: 20413.607,            
+		error: -1726.607
+            
+		Log. model: 19137.628,            
+		error: -450.628
+            
+		Exp. model: 18.954,            
+		error: 18668.046
+            
+		Pow. model: 12.103,            
+		error: 18674.897
+            
 	Earnings:            
-		Lin. model: 1.918, error: -0.118            
-		Log. model: 1.808, error: -0.008            
-		Exp. model: 9.575, error: -7.775            
-		Pow. model: 2.695, error: -0.895            
+		Lin. model: 1.918,            
+		error: -0.118
+            
+		Log. model: 1.808,            
+		error: -0.008
+            
+		Exp. model: 9.575,            
+		error: -7.775
+            
+		Pow. model: 2.695,            
+		error: -0.895
+            
 	Dividends:            
-		Lin. model: 0.0, error: 0.0            
-		Log. model: 0.0, error: 0.0            
-		Exp. model: 0.0, error: 0.0            
-		Pow. model: 0.0, error: 0.0            
+		Lin. model: 0.0,            
+		error: 0.0
+            
+		Log. model: 0.0,            
+		error: 0.0
+            
+		Exp. model: 0.0,            
+		error: 0.0
+            
+		Pow. model: 0.0,            
+		error: 0.0
 
 Symbol: PG            
 
 	Revenue:            
-		Lin. model: 17953.393, error: -255.393            
-		Log. model: 17696.325, error: 1.675            
-		Exp. model: 18.796, error: 17679.204            
-		Pow. model: 11.979, error: 17686.021            
+		Lin. model: 17953.393,            
+		error: -255.393
+            
+		Log. model: 17696.325,            
+		error: 1.675
+            
+		Exp. model: 18.796,            
+		error: 17679.204
+            
+		Pow. model: 11.979,            
+		error: 17686.021
+            
 	Earnings:            
-		Lin. model: 0.8, error: 0.27            
-		Log. model: 0.699, error: 0.371            
-		Exp. model: 9.478, error: -8.408            
-		Pow. model: 2.718, error: -1.648            
+		Lin. model: 0.8,            
+		error: 0.27
+            
+		Log. model: 0.699,            
+		error: 0.371
+            
+		Exp. model: 9.478,            
+		error: -8.408
+            
+		Pow. model: 2.718,            
+		error: -1.648
+            
 	Dividends:            
-		Lin. model: 0.781, error: 0.039            
-		Log. model: 0.771, error: 0.049            
-		Exp. model: 8.753, error: -7.933            
-		Pow. model: 1.938, error: 0.049            
+		Lin. model: 0.781,            
+		error: 0.039
+            
+		Log. model: 0.771,            
+		error: 0.049
+            
+		Exp. model: 8.753,            
+		error: -7.933
+            
+		Pow. model: 1.938,            
+		error: 0.049
 
 Symbol: GE            
 
 	Revenue:            
-		Lin. model: 21783.429, error: -4033.429            
-		Log. model: 21459.057, error: -3709.057            
-		Exp. model: 18.993, error: 17731.007            
-		Pow. model: 12.177, error: 17737.823            
+		Lin. model: 21783.429,            
+		error: -4033.429
+            
+		Log. model: 21459.057,            
+		error: -3709.057
+            
+		Exp. model: 18.993,            
+		error: 17731.007
+            
+		Pow. model: 12.177,            
+		error: 17737.823
+            
 	Earnings:            
-		Lin. model: 0.447, error: -0.707            
-		Log. model: 0.111, error: -0.371            
-		Exp. model: 7.476, error: -7.736            
-		Pow. model: 0.627, error: -0.887            
+		Lin. model: 0.447,            
+		error: -0.707
+            
+		Log. model: 0.111,            
+		error: -0.371
+            
+		Exp. model: 7.476,            
+		error: -7.736
+            
+		Pow. model: 0.627,            
+		error: -0.887
+            
 	Dividends:            
-		Lin. model: 0.031, error: 0.061            
-		Log. model: 0.003, error: 0.033            
-		Exp. model: 4.499, error: -4.469            
-		Pow. model: 1.001, error: 0.033            
+		Lin. model: 0.031,            
+		error: 0.061
+            
+		Log. model: 0.003,            
+		error: 0.033
+            
+		Exp. model: 4.499,            
+		error: -4.469
+            
+		Pow. model: 1.001,            
+		error: 0.033
 

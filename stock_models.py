@@ -102,33 +102,32 @@ def r_squared(Y, P):
 def print_metrics(m):
     s = f"Symbol: {m['sym']}\
             \n\n\tRevenue:\
-            \n\t\tLin. model: {m['rev_next']['lin']},"\
-            + f" error: {m['rev_err']['lin']}\
-            \n\t\tLog. model: {m['rev_next']['log']},"\
-            + f" error: {m['rev_err']['log']}\
-            \n\t\tExp. model: {m['rev_next']['exp']},"\
-            + f" error: {m['rev_err']['exp']}\
-            \n\t\tPow. model: {m['rev_next']['pow']},"\
-            + f" error: {m['rev_err']['pow']}\
+            \n\t\tLin. model: {m['rev_next']['lin']},\
+            \n\t\terror: {m['rev_err']['lin']}\n\
+            \n\t\tLog. model: {m['rev_next']['log']},\
+            \n\t\terror: {m['rev_err']['log']}\n\
+            \n\t\tExp. model: {m['rev_next']['exp']},\
+            \n\t\terror: {m['rev_err']['exp']}\n\
+            \n\t\tPow. model: {m['rev_next']['pow']},\
+            \n\t\terror: {m['rev_err']['pow']}\n\
             \n\tEarnings:\
-            \n\t\tLin. model: {m['ern_next']['lin']},"\
-            + f" error: {m['ern_err']['lin']}\
-            \n\t\tLog. model: {m['ern_next']['log']},"\
-            + f" error: {m['ern_err']['log']}\
-            \n\t\tExp. model: {m['ern_next']['exp']},"\
-            + f" error: {m['ern_err']['exp']}\
-            \n\t\tPow. model: {m['ern_next']['pow']},"\
-            + f" error: {m['ern_err']['pow']}\
+            \n\t\tLin. model: {m['ern_next']['lin']},\
+            \n\t\terror: {m['ern_err']['lin']}\n\
+            \n\t\tLog. model: {m['ern_next']['log']},\
+            \n\t\terror: {m['ern_err']['log']}\n\
+            \n\t\tExp. model: {m['ern_next']['exp']},\
+            \n\t\terror: {m['ern_err']['exp']}\n\
+            \n\t\tPow. model: {m['ern_next']['pow']},\
+            \n\t\terror: {m['ern_err']['pow']}\n\
             \n\tDividends:\
-            \n\t\tLin. model: {abs(m['div_next']['lin'])},"\
-            + f" error: {m['div_err']['lin']}\
-            \n\t\tLog. model: {abs(m['div_next']['log'])},"\
-            + f" error: {m['div_err']['log']}\
-            \n\t\tExp. model: {abs(m['div_next']['exp'])},"\
-            + f" error: {m['div_err']['exp']}\
-            \n\t\tPow. model: {abs(m['div_next']['pow'])},"\
-            + f" error: {m['div_err']['pow']}\
-            \n"
+            \n\t\tLin. model: {abs(m['div_next']['lin'])},\
+            \n\t\terror: {m['div_err']['lin']}\n\
+            \n\t\tLog. model: {abs(m['div_next']['log'])},\
+            \n\t\terror: {m['div_err']['log']}\n\
+            \n\t\tExp. model: {abs(m['div_next']['exp'])},\
+            \n\t\terror: {m['div_err']['exp']}\n\
+            \n\t\tPow. model: {abs(m['div_next']['pow'])},\
+            \n\t\terror: {m['div_err']['pow']}\n"
     print(s)
 
 def prediction_error(m, pos):
@@ -265,13 +264,12 @@ def main():
     # (Based on the first 8 oberved values)
     #
     ############################################################################
-    for m in metrics:
-       predicted_metrics(m, 0, 8)
-       prediction_error(m, 9)
     print("Next Quarter Predictions (In Millions USD)\
            \n------------------------------------------\n")
     for m in metrics:
-      print_metrics(m)
+       predicted_metrics(m, 0, 8)
+       prediction_error(m, 9)
+       print_metrics(m)
 
 if __name__ == '__main__':
     main()
