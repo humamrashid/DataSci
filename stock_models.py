@@ -87,6 +87,18 @@ def pow_model(Y):
     pred = np.matmul(np.array((1, m.log(9))), W)
     return round(pred, 3)
 
+def r_squared(Y, P):
+    mean_observed = sum(Y) / Y.size
+    squares = []
+    for i in Y:
+        squares.append((i - mean_observed) ** 2)
+    total_sum_sq = sum(squares)
+    squares = []
+    for i in range(Y.size)
+        squares.append((Y[i] - P[i]) ** 2)
+    sum_sq_residuals = sum(squares)
+    return (1 - (sum_sq_residuals / total_sum_sq))
+
 def print_metrics(m):
     s = f"""Symbol: {m['sym']}\
             \n\n\tRevenue:\
