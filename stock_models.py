@@ -102,37 +102,65 @@ def r_squared(Y, P):
 def print_metrics(m):
     s = f"""Symbol: {m['sym']}\
             \n\n\tRevenue:\
-            \n\t\tLin. model: {m['rev_next']['lin']}\
-            \n\t\tLog. model: {m['rev_next']['log']}\
-            \n\t\tExp. model: {m['rev_next']['exp']}\
-            \n\t\tPow. model: {m['rev_next']['pow']}\
+            \n\t\tLin. model: {m['rev_next']['lin']}, error: {m['rev_err']['lin']}\
+            \n\t\tLog. model: {m['rev_next']['log']}, error: {m['rev_err']['log']}\
+            \n\t\tExp. model: {m['rev_next']['exp']}, error: {m['rev_err']['exp']}\
+            \n\t\tPow. model: {m['rev_next']['pow']}, error: {m['rev_err']['pow']}\
             \n\tEarnings:\
-            \n\t\tLin. model: {m['ern_next']['lin']}\
-            \n\t\tLog. model: {m['ern_next']['log']}\
-            \n\t\tExp. model: {m['ern_next']['exp']}\
-            \n\t\tPow. model: {m['ern_next']['pow']}\
+            \n\t\tLin. model: {m['ern_next']['lin']}, error: {m['ern_err']['lin']}\
+            \n\t\tLog. model: {m['ern_next']['log']}, error: {m['ern_err']['log']}\
+            \n\t\tExp. model: {m['ern_next']['exp']}, error: {m['ern_err']['exp']}\
+            \n\t\tPow. model: {m['ern_next']['pow']}, error: {m['ern_err']['pow']}\
             \n\tDividends:\
-            \n\t\tLin. model: {abs(m['div_next']['lin'])}\
-            \n\t\tLog. model: {abs(m['div_next']['log'])}\
-            \n\t\tExp. model: {abs(m['div_next']['exp'])}\
-            \n\t\tPow. model: {abs(m['div_next']['pow'])}\
+            \n\t\tLin. model: {abs(m['div_next']['lin'])}, error: {m['div_err']['lin']}\
+            \n\t\tLog. model: {abs(m['div_next']['log'])}, error: {m['div_err']['lin']}\
+            \n\t\tExp. model: {abs(m['div_next']['exp'])}, error: {m['div_err']['lin']}\
+            \n\t\tPow. model: {abs(m['div_next']['pow'])}, error: {m['div_err']['lin']}\
             \n"""
     print(s)
 
-def load_preds(m, start, end):
+def prediction_error(m, pos):
+    m['rev_err'] = {
+            'lin': round(m['rev_2yrs'][pos - 1] - m['rev_next']['lin'], 3),
+            'log': round(m['rev_2yrs'][pos - 1] - m['rev_next']['log'], 3),
+            'exp': round(m['rev_2yrs'][pos - 1] - m['rev_next']['exp'], 3),
+            'pow': round(m['rev_2yrs'][pos - 1] - m['rev_next']['pow'], 3)
+            }
+    m['ern_err'] = {
+            'lin': round(m['ern_2yrs'][pos - 1] - m['ern_next']['lin'], 3),
+            'log': round(m['ern_2yrs'][pos - 1] - m['ern_next']['log'], 3),
+            'exp': round(m['ern_2yrs'][pos - 1] - m['ern_next']['exp'], 3),
+            'pow': round(m['ern_2yrs'][pos - 1] - m['ern_next']['pow'], 3)
+            }
+    if m['div_2yrs'] is None:
+        m['div_err'] = {
+                'lin': 0.00,
+                'log': 0.00,
+                'exp': 0.00,
+                'pow': 0.00
+                }
+    else:
+        m['div_err'] = {
+                'lin': round(m['div_2yrs'][pos - 1] - m['div_next']['lin'], 3),
+                'log': round(m['div_2yrs'][pos - 1] - m['div_next']['log'], 3),
+                'exp': round(m['div_2yrs'][pos - 1] - m['div_next']['exp'], 3),
+                'pow': round(m['div_2yrs'][pos - 1] - m['div_next']['log'], 3)
+                }
+
+def predicted_metrics(m, start, end):
     m['rev_next'] = {
-            'lin': lin_model(m['rev_past'][start:end]),
-            'log': log_model(m['rev_past'][start:end]),
-            'exp': exp_model(m['rev_past'][start:end]),
-            'pow': pow_model(m['rev_past'][start:end])
+            'lin': lin_model(m['rev_2yrs'][start:end]),
+            'log': log_model(m['rev_2yrs'][start:end]),
+            'exp': exp_model(m['rev_2yrs'][start:end]),
+            'pow': pow_model(m['rev_2yrs'][start:end])
             }
     m['ern_next'] = {
-            'lin': lin_model(m['ern_past'][start:end]),
-            'log': log_model(m['ern_past'][start:end]),
-            'exp': exp_model(m['ern_past'][start:end]),
-            'pow': pow_model(m['ern_past'][start:end])
+            'lin': lin_model(m['ern_2yrs'][start:end]),
+            'log': log_model(m['ern_2yrs'][start:end]),
+            'exp': exp_model(m['ern_2yrs'][start:end]),
+            'pow': pow_model(m['ern_2yrs'][start:end])
             }
-    if m['div_past'] is None:
+    if m['div_2yrs'] is None:
         m['div_next'] = {
                 'lin': 0.00,
                 'log': 0.00,
@@ -141,10 +169,10 @@ def load_preds(m, start, end):
                 }
     else:
         m['div_next'] = {
-                'lin': lin_model(m['div_past'][start:end]),
-                'log': log_model(m['div_past'][start:end]),
-                'exp': exp_model(m['div_past'][start:end]),
-                'pow': pow_model(m['div_past'][start:end])
+                'lin': lin_model(m['div_2yrs'][start:end]),
+                'log': log_model(m['div_2yrs'][start:end]),
+                'exp': exp_model(m['div_2yrs'][start:end]),
+                'pow': pow_model(m['div_2yrs'][start:end])
                 }
 
 def main():
@@ -157,63 +185,63 @@ def main():
     ############################################################################
     ibm_metrics = {
             'sym': 'IBM',
-            'rev_past': np.array((20003.00, 18756.00, 21760.00, 18182.00, \
+            'rev_2yrs': np.array((20003.00, 18756.00, 21760.00, 18182.00, \
                     19161.00, 18028.00, 21776.00, 17571.00, 18123.00)),
-            'ern_past': np.array((2.61, 2.94, 2.15, 1.78, 2.81, 1.87, 4.11, \
+            'ern_2yrs': np.array((2.61, 2.94, 2.15, 1.78, 2.81, 1.87, 4.11, \
                     1.31, 1.52)),
-            'div_past': np.array((1.57, 1.57, 1.55, 1.57, 1.62, 1.62, 1.62, \
+            'div_2yrs': np.array((1.57, 1.57, 1.55, 1.57, 1.62, 1.62, 1.62, \
                     1.62, 1.63))
             }
     msft_metrics = {
             'sym': 'MSFT',
-            'rev_past': np.array((30085.00, 29084.00, 32471.00, 30571.00, \
+            'rev_2yrs': np.array((30085.00, 29084.00, 32471.00, 30571.00, \
                     33717.00, 33055.00, 36906.00, 35021.00, 38033.00)),
-            'ern_past': np.array((1.14, 1.14, 1.08, 1.14, 1.71, 1.38, 1.51, \
+            'ern_2yrs': np.array((1.14, 1.14, 1.08, 1.14, 1.71, 1.38, 1.51, \
                     1.40, 1.46)),
-            'div_past': np.array((0.42, 0.42, 0.46, 0.46, 0.46, 0.46, 0.51, \
+            'div_2yrs': np.array((0.42, 0.42, 0.46, 0.46, 0.46, 0.46, 0.51, \
                     0.51, 0.51))
             }
     aapl_metrics = {
             'sym': 'AAPL',
-            'rev_past': np.array((53265.00, 62900.00, 84310.00, 58015.00, \
+            'rev_2yrs': np.array((53265.00, 62900.00, 84310.00, 58015.00, \
                     53809.00, 64040.00, 91819.00, 58313.00, 59685.00)),
-            'ern_past': np.array((0.59, 0.73, 1.05, 0.62, 0.55, 0.76, 1.25, \
+            'ern_2yrs': np.array((0.59, 0.73, 1.05, 0.62, 0.55, 0.76, 1.25, \
                     0.64, 0.65)),
-            'div_past': np.array((0.19, 0.18, 0.19, 0.18, 0.20, 0.19, 0.20, \
+            'div_2yrs': np.array((0.19, 0.18, 0.19, 0.18, 0.20, 0.19, 0.20, \
                     0.19, 0.21))
             }
     goog_metrics = {
             'sym': 'GOOG',
-            'rev_past': np.array((32657.00, 33740.00, 39276.00, 36339.00, \
+            'rev_2yrs': np.array((32657.00, 33740.00, 39276.00, 36339.00, \
                     38944.00, 40499.00, 46075.00, 41159.00, 38297.00)),
-            'ern_past': np.array((4.54, 13.06, 12.77, 9.50, 13.21, 10.12, \
+            'ern_2yrs': np.array((4.54, 13.06, 12.77, 9.50, 13.21, 10.12, \
                     15.35, 9.87, 10.13)),
-            'div_past': None
+            'div_2yrs': None
             }
     fb_metrics = {
             'sym': 'FB',
-            'rev_past': np.array((13231.00, 13727.00, 16914.00, 15077.00, \
+            'rev_2yrs': np.array((13231.00, 13727.00, 16914.00, 15077.00, \
                     16886.00, 17652.00, 21082.00, 17737.00, 18687.00)),
-            'ern_past': np.array((1.74, 1.76, 2.38, 0.85, 0.91, 2.12, 2.56, \
+            'ern_2yrs': np.array((1.74, 1.76, 2.38, 0.85, 0.91, 2.12, 2.56, \
                     1.71, 1.80)),
-            'div_past': None
+            'div_2yrs': None
             }
     pg_metrics = {
             'sym': 'PG',
-            'rev_past': np.array((16503.00, 16690.00, 17438.00, 16462.00, \
+            'rev_2yrs': np.array((16503.00, 16690.00, 17438.00, 16462.00, \
                     17094.00, 17798.00, 18240.00, 17214.00, 17698.00)),
-            'ern_past': np.array((0.72, 1.22, 1.22, 1.04, -2.12, 1.36, 1.41, \
+            'ern_2yrs': np.array((0.72, 1.22, 1.22, 1.04, -2.12, 1.36, 1.41, \
                     1.12, 1.07)),
-            'div_past': np.array((0.74, 0.74, 0.74, 0.74, 0.77, 0.77, 0.77, \
+            'div_2yrs': np.array((0.74, 0.74, 0.74, 0.74, 0.77, 0.77, 0.77, \
                     0.77, 0.82))
             }
     ge_metrics = {
             'sym': 'GE',
-            'rev_past': np.array((29162.00, 23392.00, 16670.00, 22202.00, \
+            'rev_2yrs': np.array((29162.00, 23392.00, 16670.00, 22202.00, \
                     23414.00, 23360.00, 26238.00, 20524.00, 17750.00)),
-            'ern_past': np.array((0.07, -2.62, 0.07, 0.41, -0.01, -1.08, 0.06, \
+            'ern_2yrs': np.array((0.07, -2.62, 0.07, 0.41, -0.01, -1.08, 0.06, \
                     0.70, -0.26)),
-            'div_past': np.array((0.14, 0.12, 0.14, 0.01, 0.03, 0.01, 0.03, \
+            'div_2yrs': np.array((0.14, 0.12, 0.14, 0.01, 0.03, 0.01, 0.03, \
                     0.01, 0.03))
             }
     metrics = [ibm_metrics, msft_metrics, aapl_metrics, goog_metrics, \
@@ -226,11 +254,12 @@ def main():
     #
     ############################################################################
     for m in metrics:
-       load_preds(m, 0, 8)
+       predicted_metrics(m, 0, 8)
+       prediction_error(m, 9)
     #print("Next Quarter Predictions (In Millions USD)\
     #       \n------------------------------------------\n")
     for m in metrics:
-       print_metrics(m)
+      print_metrics(m)
 
 if __name__ == '__main__':
     main()
