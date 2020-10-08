@@ -256,8 +256,8 @@ def main():
     for m in metrics:
        predicted_metrics(m, 0, 8)
        prediction_error(m, 9)
-    #print("Next Quarter Predictions (In Millions USD)\
-    #       \n------------------------------------------\n")
+    print("Next Quarter Predictions (In Millions USD)\
+           \n------------------------------------------\n")
     for m in metrics:
       print_metrics(m)
 
