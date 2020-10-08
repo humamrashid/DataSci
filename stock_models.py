@@ -3,17 +3,20 @@
 # Humam Rashid
 # CISC 7700X, Prof. Sverdlov
 
-import sys
 import math as m
 import numpy as np
 from numpy.linalg import inv
 
 def lin_model(Y):
     X = np.array((
-        (1, 1), (1, 2),
-        (1, 3), (1, 4),
-        (1, 5), (1, 6),
-        (1, 7), (1, 8)
+        (1, 1),
+        (1, 2),
+        (1, 3),
+        (1, 4),
+        (1, 5),
+        (1, 6),
+        (1, 7),
+        (1, 8)
         ))
     M = np.matmul(X.T, X)
     IM = inv(M)
@@ -24,10 +27,14 @@ def lin_model(Y):
 
 def log_model(Y):
     X = np.array((
-        (1, m.log(1)), (1, m.log(2)),
-        (1, m.log(3)), (1, m.log(4)),
-        (1, m.log(5)), (1, m.log(6)),
-        (1, m.log(7)), (1, m.log(8))
+        (1, m.log(1)),
+        (1, m.log(2)),
+        (1, m.log(3)),
+        (1, m.log(4)),
+        (1, m.log(5)),
+        (1, m.log(6)),
+        (1, m.log(7)),
+        (1, m.log(8))
         ))
     M = np.matmul(X.T, X)
     IM = inv(M)
@@ -41,18 +48,20 @@ def exp_model(Y):
     for i in Y:
         Y_ln.append(m.log(abs(i)))
     X = np.array((
-        (1, 1), (1, 2),
-        (1, 3), (1, 4),
-        (1, 5), (1, 6),
-        (1, 7), (1, 8)
+        (1, 1),
+        (1, 2),
+        (1, 3),
+        (1, 4),
+        (1, 5),
+        (1, 6),
+        (1, 7),
+        (1, 8)
         ))
     M = np.matmul(X.T, X)
     IM = inv(M)
     M2 = np.matmul(IM, X.T)
     W = np.matmul(M2, Y_ln)
-    print("exp(B) = ", m.exp(W[1]))
     W[1] = m.exp(W[1])
-    print("B = ", W[1])
     pred = np.matmul(np.array((1, 9)), W)
     return round(pred, 3)
 
@@ -61,18 +70,20 @@ def pow_model(Y):
     for i in Y:
         Y_ln.append(m.log(abs(i)))
     X = np.array((
-        (1, m.log(1)), (1, m.log(2)),
-        (1, m.log(3)), (1, m.log(4)),
-        (1, m.log(5)), (1, m.log(6)),
-        (1, m.log(7)), (1, m.log(8))
+        (1, m.log(1)),
+        (1, m.log(2)),
+        (1, m.log(3)),
+        (1, m.log(4)),
+        (1, m.log(5)),
+        (1, m.log(6)),
+        (1, m.log(7)),
+        (1, m.log(8))
         ))
     M = np.matmul(X.T, X)
     IM = inv(M)
     M2 = np.matmul(IM, X.T)
     W = np.matmul(M2, Y_ln)
-    print("exp(B) = ", m.exp(W[1]))
     W[1] = m.exp(W[1])
-    print("B = ", W[1])
     pred = np.matmul(np.array((1, m.log(9))), W)
     return round(pred, 3)
 
