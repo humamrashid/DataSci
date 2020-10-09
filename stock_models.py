@@ -388,7 +388,6 @@ def main():
        print(grade_bysym(m, 9))
     print(grade_bymetric(metrics, 9))
 
-
 if __name__ == '__main__':
     main()
 
