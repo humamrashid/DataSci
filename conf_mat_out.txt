@@ -1,0 +1,24 @@
+1. Confusion matrix (manual):
+
+ [[3550  707]
+ [ 484 5259]]
+
+Accuracy:  0.8809
+
+2. Confusion matrix (scikit-learn):
+
+ [[3550  707]
+ [ 484 5259]]
+
+Classification report (scikit-learn):
+
+               precision    recall  f1-score   support
+
+           1       0.88      0.83      0.86      4257
+          -1       0.88      0.92      0.90      5743
+
+    accuracy                           0.88     10000
+   macro avg       0.88      0.87      0.88     10000
+weighted avg       0.88      0.88      0.88     10000
+
+Economic gain:  -131.01
