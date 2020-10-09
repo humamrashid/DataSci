@@ -132,12 +132,12 @@ def grade_bysym(m, pos):
     r_sqs[r_sq_log] = "Logarithmic"
     r_sqs[r_sq_exp] = "Exponential"
     r_sqs[r_sq_pow] = "Power"
-    s = f"\tR-Squared:\
-            \n\t\tLin. model: {r_sq_lin}\
-            \n\t\tLog. model: {r_sq_log}\
-            \n\t\tExp. model: {r_sq_exp}\
-            \n\t\tPow. model: {r_sq_pow}\
-            \n\n\t\tBest model for {m['sym']}: {r_sqs[max(list(r_sqs))]}\n"
+    s = f"\tModels for {m['sym']} by R-Squared:\
+            \n\t\tLinear: {r_sq_lin}\
+            \n\t\tLogarithmic: {r_sq_log}\
+            \n\t\tExponential: {r_sq_exp}\
+            \n\t\tPower: {r_sq_pow}\
+            \n\t\tBest model for {m['sym']}: {r_sqs[max(list(r_sqs))]}\n"
     return s
 
 def grade_bymetric(metrics, pos):
@@ -156,7 +156,9 @@ def grade_bymetric(metrics, pos):
     Ppow_rev = []
     Ppow_ern = []
     Ppow_div = []
-    r_sqs = dict()
+    r_sqs_rev = dict()
+    r_sqs_ern = dict()
+    r_sqs_div = dict()
     for m in metrics:
         Yrev.append(m['rev_9qtr'][pos - 1])
         Yern.append(m['ern_9qtr'][pos - 1])
@@ -176,21 +178,41 @@ def grade_bymetric(metrics, pos):
         Ppow_rev.append(m['rev_next']['pow'])
         Ppow_ern.append(m['ern_next']['pow'])
         Ppow_div.append(m['div_next']['pow'])
-
     r_sq_rev_lin = r_squared(Yrev, Plin_rev)
     r_sq_rev_log = r_squared(Yrev, Plog_rev)
     r_sq_rev_exp = r_squared(Yrev, Pexp_rev)
     r_sq_rev_pow = r_squared(Yrev, Ppow_rev)
-
+    r_sqs_rev[r_sq_rev_lin] = "Linear"
+    r_sqs_rev[r_sq_rev_log] = "Logarithmic"
+    r_sqs_rev[r_sq_rev_exp] = "Exponential"
+    r_sqs_rev[r_sq_rev_pow] = "Power"
+    best_rev = max(r_sq_rev_lin, r_sq_rev_log, r_sq_rev_exp, r_sq_rev_pow)
     r_sq_ern_lin = r_squared(Yern, Plin_ern)
     r_sq_ern_log = r_squared(Yern, Plog_ern)
     r_sq_ern_exp = r_squared(Yern, Pexp_ern)
     r_sq_ern_pow = r_squared(Yern, Ppow_ern)
-
+    r_sqs_ern[r_sq_ern_lin] = "Linear"
+    r_sqs_ern[r_sq_ern_log] = "Logarithmic"
+    r_sqs_ern[r_sq_ern_exp] = "Exponential"
+    r_sqs_ern[r_sq_ern_pow] = "Power"
+    best_ern = max(r_sq_ern_lin, r_sq_ern_log, r_sq_ern_exp, r_sq_ern_pow)
     r_sq_div_lin = r_squared(Ydiv, Plin_div)
     r_sq_div_log = r_squared(Ydiv, Plog_div)
     r_sq_div_exp = r_squared(Ydiv, Pexp_div)
     r_sq_div_pow = r_squared(Ydiv, Ppow_div)
+    r_sqs_div[r_sq_div_lin] = "Linear"
+    r_sqs_div[r_sq_div_log] = "Logarithmic"
+    r_sqs_div[r_sq_div_exp] = "Exponential"
+    r_sqs_div[r_sq_div_pow] = "Power"
+    best_div = max(r_sq_div_lin, r_sq_div_log, r_sq_div_exp, r_sq_div_pow)
+    s = f"Models for metrics by R-Squared:\
+            \n\tRevenue:\
+            \n\t\tBest: {r_sqs_rev[best_rev]}, with R-Squared: {best_rev}\
+            \n\tEarnings:\
+            \n\t\tBest: {r_sqs_ern[best_ern]}, with R-Squared: {best_ern}\
+            \n\tDividends:\
+            \n\t\tBest: {r_sqs_div[best_div]}, with R-Squared: {best_div}\n"
+    return s
 
 def print_metrics(m):
     s = f"Symbol: {m['sym']}\
@@ -362,9 +384,9 @@ def main():
     for m in metrics:
        predicted_metrics(m, 0, 8)
        prediction_error(m, 9)
-       #print_metrics(m)
-       #print(grade_bysym(m, 9))
-    grade_bymetric(metrics, 9)
+       print_metrics(m)
+       print(grade_bysym(m, 9))
+    print(grade_bymetric(metrics, 9))
 
 
 if __name__ == '__main__':

@@ -2,7 +2,6 @@ Next Quarter Predictions (In Millions USD)
 ------------------------------------------
 
 Symbol: IBM            
-
 	Revenue:            
 		Lin. model: 18754.214,            
 		error: -631.214
@@ -42,8 +41,14 @@ Symbol: IBM
 		Pow. model: 2.68,            
 		error: 0.01
 
-Symbol: MSFT            
+	Models for IBM by R-Squared:            
+		Linear: 0.998            
+		Logarithmic: 0.996            
+		Exponential: -0.497            
+		Power: -0.498            
+		Best model for IBM: Linear
 
+Symbol: MSFT            
 	Revenue:            
 		Lin. model: 36822.321,            
 		error: 1210.679
@@ -83,8 +88,14 @@ Symbol: MSFT
 		Pow. model: 1.514,            
 		error: 0.01
 
-Symbol: AAPL            
+	Models for MSFT by R-Squared:            
+		Linear: 0.998            
+		Logarithmic: 0.992            
+		Exponential: -0.499            
+		Power: -0.499            
+		Best model for MSFT: Linear
 
+Symbol: AAPL            
 	Revenue:            
 		Lin. model: 71965.036,            
 		error: -12280.036
@@ -124,8 +135,14 @@ Symbol: AAPL
 		Pow. model: 0.556,            
 		error: 0.016
 
-Symbol: GOOG            
+	Models for AAPL by R-Squared:            
+		Linear: 0.937            
+		Logarithmic: 0.947            
+		Exponential: -0.499            
+		Power: -0.499            
+		Best model for AAPL: Logarithmic
 
+Symbol: GOOG            
 	Revenue:            
 		Lin. model: 45414.5,            
 		error: -7117.5
@@ -165,8 +182,14 @@ Symbol: GOOG
 		Pow. model: 0.0,            
 		error: 0.0
 
-Symbol: FB            
+	Models for GOOG by R-Squared:            
+		Linear: 0.948            
+		Logarithmic: 0.976            
+		Exponential: -0.499            
+		Power: -0.499            
+		Best model for GOOG: Logarithmic
 
+Symbol: FB            
 	Revenue:            
 		Lin. model: 20413.607,            
 		error: -1726.607
@@ -206,8 +229,14 @@ Symbol: FB
 		Pow. model: 0.0,            
 		error: 0.0
 
-Symbol: PG            
+	Models for FB by R-Squared:            
+		Linear: 0.987            
+		Logarithmic: 0.999            
+		Exponential: -0.497            
+		Power: -0.498            
+		Best model for FB: Logarithmic
 
+Symbol: PG            
 	Revenue:            
 		Lin. model: 17953.393,            
 		error: -255.393
@@ -247,8 +276,14 @@ Symbol: PG
 		Pow. model: 1.938,            
 		error: 0.049
 
-Symbol: GE            
+	Models for PG by R-Squared:            
+		Linear: 1.0            
+		Logarithmic: 1.0            
+		Exponential: -0.497            
+		Power: -0.498            
+		Best model for PG: Logarithmic
 
+Symbol: GE            
 	Revenue:            
 		Lin. model: 21783.429,            
 		error: -4033.429
@@ -287,4 +322,19 @@ Symbol: GE
             
 		Pow. model: 1.001,            
 		error: 0.033
+
+	Models for GE by R-Squared:            
+		Linear: 0.923            
+		Logarithmic: 0.935            
+		Exponential: -0.497            
+		Power: -0.498            
+		Best model for GE: Logarithmic
+
+Models for metrics by R-Squared:            
+	Revenue:            
+		Best: Logarithmic, with R-Squared: 0.892            
+	Earnings:            
+		Best: Logarithmic, with R-Squared: 0.853            
+	Dividends:            
+		Best: Logarithmic, with R-Squared: 0.998
 
