@@ -3,7 +3,7 @@
 # Humam Rashid
 # CISC 7700X, Prof. Sverdlov
 
-import math as m
+import math
 import numpy as np
 from numpy.linalg import inv
 
@@ -27,26 +27,26 @@ def lin_model(Y):
 
 def log_model(Y):
     X = np.array((
-        (1, m.log(1)),
-        (1, m.log(2)),
-        (1, m.log(3)),
-        (1, m.log(4)),
-        (1, m.log(5)),
-        (1, m.log(6)),
-        (1, m.log(7)),
-        (1, m.log(8))
+        (1, math.log(1)),
+        (1, math.log(2)),
+        (1, math.log(3)),
+        (1, math.log(4)),
+        (1, math.log(5)),
+        (1, math.log(6)),
+        (1, math.log(7)),
+        (1, math.log(8))
         ))
     M = np.matmul(X.T, X)
     IM = inv(M)
     M2 = np.matmul(IM, X.T)
     W = np.matmul(M2, Y)
-    pred = np.matmul(np.array((1, m.log(9))), W)
+    pred = np.matmul(np.array((1, math.log(9))), W)
     return round(pred, 3)
 
 def exp_model(Y):
     Y_ln = []
     for i in Y:
-        Y_ln.append(m.log(abs(i)))
+        Y_ln.append(math.log(abs(i)))
     X = np.array((
         (1, 1),
         (1, 2),
@@ -61,47 +61,91 @@ def exp_model(Y):
     IM = inv(M)
     M2 = np.matmul(IM, X.T)
     W = np.matmul(M2, Y_ln)
-    W[1] = m.exp(W[1])
+    W[1] = math.exp(W[1])
     pred = np.matmul(np.array((1, 9)), W)
     return round(pred, 3)
 
 def pow_model(Y):
     Y_ln = []
     for i in Y:
-        Y_ln.append(m.log(abs(i)))
+        Y_ln.append(math.log(abs(i)))
     X = np.array((
-        (1, m.log(1)),
-        (1, m.log(2)),
-        (1, m.log(3)),
-        (1, m.log(4)),
-        (1, m.log(5)),
-        (1, m.log(6)),
-        (1, m.log(7)),
-        (1, m.log(8))
+        (1, math.log(1)),
+        (1, math.log(2)),
+        (1, math.log(3)),
+        (1, math.log(4)),
+        (1, math.log(5)),
+        (1, math.log(6)),
+        (1, math.log(7)),
+        (1, math.log(8))
         ))
     M = np.matmul(X.T, X)
     IM = inv(M)
     M2 = np.matmul(IM, X.T)
     W = np.matmul(M2, Y_ln)
-    W[1] = m.exp(W[1])
-    pred = np.matmul(np.array((1, m.log(9))), W)
+    W[1] = math.exp(W[1])
+    pred = np.matmul(np.array((1, math.log(9))), W)
     return round(pred, 3)
 
 def r_squared(Y, P):
-    mean_observed = sum(Y) / Y.size
+    mean_observed = sum(Y) / len(Y)
     squares = []
     for i in Y:
         squares.append((i - mean_observed) ** 2)
     total_sum_sq = sum(squares)
     squares = []
-    for i in range(Y.size):
+    for i in range(len(Y)):
         squares.append((Y[i] - P[i]) ** 2)
     sum_sq_residuals = sum(squares)
-    return (1 - (sum_sq_residuals / total_sum_sq))
+    return round((1 - (sum_sq_residuals / total_sum_sq)), 3)
+
+def grade_bysym(metric, pos):
+    Y = []
+    Plin = []
+    Plog = []
+    Pexp = []
+    Ppow = []
+    r_sqs = dict()
+    Y.append(metric['rev_9qtr'][pos - 1])
+    Y.append(metric['ern_9qtr'][pos - 1])
+    if metric['div_9qtr'] is None:
+        Y.append(0.00)
+    else:
+        Y.append(metric['div_9qtr'][pos - 1])
+    Plin.append(metric['rev_next']['lin'])
+    Plin.append(metric['ern_next']['lin'])
+    Plin.append(metric['div_next']['lin']) 
+    Plog.append(metric['rev_next']['log'])
+    Plog.append(metric['ern_next']['log'])
+    Plog.append(metric['div_next']['log'])
+    Pexp.append(metric['rev_next']['exp'])
+    Pexp.append(metric['ern_next']['exp'])
+    Pexp.append(metric['div_next']['exp'])
+    Ppow.append(metric['rev_next']['pow'])
+    Ppow.append(metric['ern_next']['pow'])
+    Ppow.append(metric['div_next']['pow'])
+    r_sq_lin = r_squared(Y, Plin)
+    r_sq_log = r_squared(Y, Plog)
+    r_sq_exp = r_squared(Y, Pexp)
+    r_sq_pow = r_squared(Y, Ppow)
+    r_sqs[r_sq_lin] = "Linear"
+    r_sqs[r_sq_log] = "Logarithmic"
+    r_sqs[r_sq_exp] = "Exponential"
+    r_sqs[r_sq_pow] = "Power"
+    s = f"Symbol: {metric['sym']}\
+            \n\tLin. model: {r_sq_lin}\
+            \n\tLog. model: {r_sq_log}\
+            \n\tExp. model: {r_sq_exp}\
+            \n\tPow. model: {r_sq_pow}\
+            \n\n\tBest model for {metric['sym']}: {r_sqs[max(list(r_sqs))]}\n"
+    print(s)
+
+def grade_bymetric():
+    return
 
 def print_metrics(m):
     s = f"Symbol: {m['sym']}\
-            \n\n\tRevenue:\
+            \n\tRevenue:\
             \n\t\tLin. model: {m['rev_next']['lin']},\
             \n\t\terror: {m['rev_err']['lin']}\n\
             \n\t\tLog. model: {m['rev_next']['log']},\
@@ -269,7 +313,11 @@ def main():
     for m in metrics:
        predicted_metrics(m, 0, 8)
        prediction_error(m, 9)
-       print_metrics(m)
+       #print_metrics(m)
+    print("Coefficient of Determination (R-Squared)\
+           \n----------------------------------------\n")
+    for m in metrics:
+        grade_bysym(m, 9)
 
 if __name__ == '__main__':
     main()
