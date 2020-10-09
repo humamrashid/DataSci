@@ -99,31 +99,31 @@ def r_squared(Y, P):
     sum_sq_residuals = sum(squares)
     return round((1 - (sum_sq_residuals / total_sum_sq)), 3)
 
-def grade_bysym(metric, pos):
+def grade_bysym(m, pos):
     Y = []
     Plin = []
     Plog = []
     Pexp = []
     Ppow = []
     r_sqs = dict()
-    Y.append(metric['rev_9qtr'][pos - 1])
-    Y.append(metric['ern_9qtr'][pos - 1])
-    if metric['div_9qtr'] is None:
+    Y.append(m['rev_9qtr'][pos - 1])
+    Y.append(m['ern_9qtr'][pos - 1])
+    if m['div_9qtr'] is None:
         Y.append(0.00)
     else:
-        Y.append(metric['div_9qtr'][pos - 1])
-    Plin.append(metric['rev_next']['lin'])
-    Plin.append(metric['ern_next']['lin'])
-    Plin.append(metric['div_next']['lin']) 
-    Plog.append(metric['rev_next']['log'])
-    Plog.append(metric['ern_next']['log'])
-    Plog.append(metric['div_next']['log'])
-    Pexp.append(metric['rev_next']['exp'])
-    Pexp.append(metric['ern_next']['exp'])
-    Pexp.append(metric['div_next']['exp'])
-    Ppow.append(metric['rev_next']['pow'])
-    Ppow.append(metric['ern_next']['pow'])
-    Ppow.append(metric['div_next']['pow'])
+        Y.append(m['div_9qtr'][pos - 1])
+    Plin.append(m['rev_next']['lin'])
+    Plin.append(m['ern_next']['lin'])
+    Plin.append(m['div_next']['lin']) 
+    Plog.append(m['rev_next']['log'])
+    Plog.append(m['ern_next']['log'])
+    Plog.append(m['div_next']['log'])
+    Pexp.append(m['rev_next']['exp'])
+    Pexp.append(m['ern_next']['exp'])
+    Pexp.append(m['div_next']['exp'])
+    Ppow.append(m['rev_next']['pow'])
+    Ppow.append(m['ern_next']['pow'])
+    Ppow.append(m['div_next']['pow'])
     r_sq_lin = r_squared(Y, Plin)
     r_sq_log = r_squared(Y, Plog)
     r_sq_exp = r_squared(Y, Pexp)
@@ -137,11 +137,60 @@ def grade_bysym(metric, pos):
             \n\t\tLog. model: {r_sq_log}\
             \n\t\tExp. model: {r_sq_exp}\
             \n\t\tPow. model: {r_sq_pow}\
-            \n\n\t\tBest model for {metric['sym']}: {r_sqs[max(list(r_sqs))]}\n"
-    print(s)
+            \n\n\t\tBest model for {m['sym']}: {r_sqs[max(list(r_sqs))]}\n"
+    return s
 
-def grade_bymetric():
-    return
+def grade_bymetric(metrics, pos):
+    Yrev = []
+    Yern = []
+    Ydiv = []
+    Plin_rev = []
+    Plin_ern = []
+    Plin_div = []
+    Plog_rev = []
+    Plog_ern = []
+    Plog_div = []
+    Pexp_rev = []
+    Pexp_ern = []
+    Pexp_div = []
+    Ppow_rev = []
+    Ppow_ern = []
+    Ppow_div = []
+    r_sqs = dict()
+    for m in metrics:
+        Yrev.append(m['rev_9qtr'][pos - 1])
+        Yern.append(m['ern_9qtr'][pos - 1])
+        if m['div_9qtr'] is None:
+            Ydiv.append(0.00)
+        else:
+            Ydiv.append(m['div_9qtr'][pos - 1])
+        Plin_rev.append(m['rev_next']['lin'])
+        Plin_ern.append(m['ern_next']['lin'])
+        Plin_div.append(m['div_next']['lin'])
+        Plog_rev.append(m['rev_next']['log'])
+        Plog_ern.append(m['ern_next']['log'])
+        Plog_div.append(m['div_next']['log'])
+        Pexp_rev.append(m['rev_next']['exp'])
+        Pexp_ern.append(m['ern_next']['exp'])
+        Pexp_div.append(m['div_next']['exp'])
+        Ppow_rev.append(m['rev_next']['pow'])
+        Ppow_ern.append(m['ern_next']['pow'])
+        Ppow_div.append(m['div_next']['pow'])
+
+    r_sq_rev_lin = r_squared(Yrev, Plin_rev)
+    r_sq_rev_log = r_squared(Yrev, Plog_rev)
+    r_sq_rev_exp = r_squared(Yrev, Pexp_rev)
+    r_sq_rev_pow = r_squared(Yrev, Ppow_rev)
+
+    r_sq_ern_lin = r_squared(Yern, Plin_ern)
+    r_sq_ern_log = r_squared(Yern, Plog_ern)
+    r_sq_ern_exp = r_squared(Yern, Pexp_ern)
+    r_sq_ern_pow = r_squared(Yern, Ppow_ern)
+
+    r_sq_div_lin = r_squared(Ydiv, Plin_div)
+    r_sq_div_log = r_squared(Ydiv, Plog_div)
+    r_sq_div_exp = r_squared(Ydiv, Pexp_div)
+    r_sq_div_pow = r_squared(Ydiv, Ppow_div)
 
 def print_metrics(m):
     s = f"Symbol: {m['sym']}\
@@ -313,8 +362,10 @@ def main():
     for m in metrics:
        predicted_metrics(m, 0, 8)
        prediction_error(m, 9)
-       print_metrics(m)
-       grade_bysym(m, 9)
+       #print_metrics(m)
+       #print(grade_bysym(m, 9))
+    grade_bymetric(metrics, 9)
+
 
 if __name__ == '__main__':
     main()
