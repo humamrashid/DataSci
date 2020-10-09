@@ -132,12 +132,12 @@ def grade_bysym(metric, pos):
     r_sqs[r_sq_log] = "Logarithmic"
     r_sqs[r_sq_exp] = "Exponential"
     r_sqs[r_sq_pow] = "Power"
-    s = f"Symbol: {metric['sym']}\
-            \n\tLin. model: {r_sq_lin}\
-            \n\tLog. model: {r_sq_log}\
-            \n\tExp. model: {r_sq_exp}\
-            \n\tPow. model: {r_sq_pow}\
-            \n\n\tBest model for {metric['sym']}: {r_sqs[max(list(r_sqs))]}\n"
+    s = f"\tR-Squared:\
+            \n\t\tLin. model: {r_sq_lin}\
+            \n\t\tLog. model: {r_sq_log}\
+            \n\t\tExp. model: {r_sq_exp}\
+            \n\t\tPow. model: {r_sq_pow}\
+            \n\n\t\tBest model for {metric['sym']}: {r_sqs[max(list(r_sqs))]}\n"
     print(s)
 
 def grade_bymetric():
@@ -313,11 +313,8 @@ def main():
     for m in metrics:
        predicted_metrics(m, 0, 8)
        prediction_error(m, 9)
-       #print_metrics(m)
-    print("Coefficient of Determination (R-Squared)\
-           \n----------------------------------------\n")
-    for m in metrics:
-        grade_bysym(m, 9)
+       print_metrics(m)
+       grade_bysym(m, 9)
 
 if __name__ == '__main__':
     main()
