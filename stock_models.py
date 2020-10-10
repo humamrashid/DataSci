@@ -23,7 +23,7 @@ def lin_model(Y):
     M2 = np.matmul(IM, X.T)
     W = np.matmul(M2, Y)
     pred = np.matmul(np.array((1, 9)), W)
-    return round(pred, 3)
+    return round(pred, 5)
 
 def log_model(Y):
     X = np.array((
@@ -41,7 +41,7 @@ def log_model(Y):
     M2 = np.matmul(IM, X.T)
     W = np.matmul(M2, Y)
     pred = np.matmul(np.array((1, math.log(9))), W)
-    return round(pred, 3)
+    return round(pred, 5)
 
 def exp_model(Y):
     Y_ln = []
@@ -63,7 +63,7 @@ def exp_model(Y):
     W = np.matmul(M2, Y_ln)
     W[1] = math.exp(W[1])
     pred = np.matmul(np.array((1, 9)), W)
-    return round(pred, 3)
+    return round(pred, 5)
 
 def pow_model(Y):
     Y_ln = []
@@ -85,7 +85,7 @@ def pow_model(Y):
     W = np.matmul(M2, Y_ln)
     W[1] = math.exp(W[1])
     pred = np.matmul(np.array((1, math.log(9))), W)
-    return round(pred, 3)
+    return round(pred, 5)
 
 def r_squared(Y, P):
     mean_observed = sum(Y) / len(Y)
@@ -97,7 +97,7 @@ def r_squared(Y, P):
     for i in range(len(Y)):
         squares.append((Y[i] - P[i]) ** 2)
     sum_sq_residuals = sum(squares)
-    return round((1 - (sum_sq_residuals / total_sum_sq)), 3)
+    return round((1 - (sum_sq_residuals / total_sum_sq)), 5)
 
 def grade_bysym(m, pos):
     Y = []
@@ -247,16 +247,16 @@ def print_metrics(m):
 
 def prediction_error(m, pos):
     m['rev_err'] = {
-            'lin': round(m['rev_9qtr'][pos - 1] - m['rev_next']['lin'], 3),
-            'log': round(m['rev_9qtr'][pos - 1] - m['rev_next']['log'], 3),
-            'exp': round(m['rev_9qtr'][pos - 1] - m['rev_next']['exp'], 3),
-            'pow': round(m['rev_9qtr'][pos - 1] - m['rev_next']['pow'], 3)
+            'lin': round(m['rev_9qtr'][pos - 1] - m['rev_next']['lin'], 5),
+            'log': round(m['rev_9qtr'][pos - 1] - m['rev_next']['log'], 5),
+            'exp': round(m['rev_9qtr'][pos - 1] - m['rev_next']['exp'], 5),
+            'pow': round(m['rev_9qtr'][pos - 1] - m['rev_next']['pow'], 5)
             }
     m['ern_err'] = {
-            'lin': round(m['ern_9qtr'][pos - 1] - m['ern_next']['lin'], 3),
-            'log': round(m['ern_9qtr'][pos - 1] - m['ern_next']['log'], 3),
-            'exp': round(m['ern_9qtr'][pos - 1] - m['ern_next']['exp'], 3),
-            'pow': round(m['ern_9qtr'][pos - 1] - m['ern_next']['pow'], 3)
+            'lin': round(m['ern_9qtr'][pos - 1] - m['ern_next']['lin'], 5),
+            'log': round(m['ern_9qtr'][pos - 1] - m['ern_next']['log'], 5),
+            'exp': round(m['ern_9qtr'][pos - 1] - m['ern_next']['exp'], 5),
+            'pow': round(m['ern_9qtr'][pos - 1] - m['ern_next']['pow'], 5)
             }
     if m['div_9qtr'] is None:
         m['div_err'] = {
@@ -267,10 +267,10 @@ def prediction_error(m, pos):
                 }
     else:
         m['div_err'] = {
-                'lin': round(m['div_9qtr'][pos - 1] - m['div_next']['lin'], 3),
-                'log': round(m['div_9qtr'][pos - 1] - m['div_next']['log'], 3),
-                'exp': round(m['div_9qtr'][pos - 1] - m['div_next']['exp'], 3),
-                'pow': round(m['div_9qtr'][pos - 1] - m['div_next']['log'], 3)
+                'lin': round(m['div_9qtr'][pos - 1] - m['div_next']['lin'], 5),
+                'log': round(m['div_9qtr'][pos - 1] - m['div_next']['log'], 5),
+                'exp': round(m['div_9qtr'][pos - 1] - m['div_next']['exp'], 5),
+                'pow': round(m['div_9qtr'][pos - 1] - m['div_next']['log'], 5)
                 }
 
 def predicted_metrics(m, start, end):
