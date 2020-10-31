@@ -6,13 +6,25 @@
 import sys
 import numpy as np
 
+POS_CLASS = 58
+
 def main(filename):
     dataset = np.loadtxt(open(filename, "rb"), dtype='float64', delimiter=",")
-    print(dataset[-1])
+    num_rows, num_cols = dataset.shape
+    
+    # Fraction of emails of category spam
+    count_spam = 0
+    count_ham = 0
+    p_spam = 0
+    for i in range(num_rows):
+        if dataset[i][POS_CLASS -1] == 1.0:
+            count_spam += 1
+        else:
+            count_ham += 1
+    print("Spam count=", count_spam)
+    print("Ham count=", count_ham)
 
-    #actual = dataset[:, -1]
-    # Assigned values
-    #assigned = []
+    table = {}
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
