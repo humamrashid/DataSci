@@ -7,6 +7,7 @@ import sys
 import numpy as np
 
 POS_CLASS = 58
+TOTAL_INSTANCES = 4601
 
 def main(filename):
     dataset = np.loadtxt(open(filename, "rb"), dtype='float64', delimiter=",")
@@ -23,6 +24,8 @@ def main(filename):
             count_ham += 1
     print("Spam count=", count_spam)
     print("Ham count=", count_ham)
+    print("P(spam) =", count_spam / TOTAL_INSTANCES)
+    print("P(ham) =", count_ham / TOTAL_INSTANCES)
 
     table = {}
 
