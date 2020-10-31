@@ -9,23 +9,22 @@ import numpy as np
 POS_CLASS = 58
 TOTAL_INSTANCES = 4601
 
-def main(filename):
-    dataset = np.loadtxt(open(filename, "rb"), dtype='float64', delimiter=",")
-    num_rows, num_cols = dataset.shape
-    
-    # Fraction of emails of category spam
+def get_pcat(dataset, num_rows):
     count_spam = 0
     count_ham = 0
-    p_spam = 0
     for i in range(num_rows):
         if dataset[i][POS_CLASS -1] == 1.0:
             count_spam += 1
         else:
             count_ham += 1
-    print("Spam count=", count_spam)
-    print("Ham count=", count_ham)
-    print("P(spam) =", count_spam / TOTAL_INSTANCES)
-    print("P(ham) =", count_ham / TOTAL_INSTANCES)
+    return (count_spam / TOTAL_INSTANCES, count_ham / TOTAL_INSTANCES)
+
+def main(filename):
+    dataset = np.loadtxt(open(filename, "rb"), dtype='float64', delimiter=",")
+    num_rows, num_cols = dataset.shape
+    
+    # P(spam), P(ham)
+    p_spam, p_ham = get_pcat(dataset, num_rows)
 
     table = {}
 
