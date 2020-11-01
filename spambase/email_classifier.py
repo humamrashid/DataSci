@@ -11,6 +11,7 @@ def exit_err(msg, err):
     sys.exit(err)
 
 def get_pcat(dataset, num_inst, label_pos):
+    prior = {}
     count_spam = 0
     count_ham = 0
     for i in range(num_inst):
@@ -18,12 +19,15 @@ def get_pcat(dataset, num_inst, label_pos):
             count_spam += 1
         else:
             count_ham += 1
-    return (count_spam / num_inst, count_ham / num_inst)
+
+    prior['spam'] = count_spam / num_inst
+    prior['ham'] = count_ham / num_inst
+    return prior
 
 def get_pwordinclass(dataset, num_inst, num_words, label_pos):
     table = {}
-    table['spam'] = np.zeros(num_words, dtype='float64')
-    table['ham'] = np.zeros(num_words, dtype='float64')
+    table['spam'] = np.empty(num_words, dtype='float64')
+    table['ham'] = np.empty(num_words, dtype='float64')
     occ_total = np.zeros(num_words, dtype='int64')
     occ_spam = np.zeros(num_words, dtype='int64')
     occ_ham = np.zeros(num_words, dtype='int64')
@@ -38,9 +42,6 @@ def get_pwordinclass(dataset, num_inst, num_words, label_pos):
                 elif dataset[i][label_pos - 1] == 0.0:
                     # Word is not spam
                     occ_ham[j] += 1
-    print("Occ_total:", occ_total)
-    print("Occ_spam:", occ_spam)
-    print("Occ_ham:", occ_ham)
     for k in range(num_words):
         if occ_total[k] != 0:
             table['spam'][k] = occ_spam[k] / occ_total[k]
@@ -48,17 +49,13 @@ def get_pwordinclass(dataset, num_inst, num_words, label_pos):
         else:
             table['spam'][k] = 0.0
             table['ham'][k] = 0.0
-    print("spam probs:", table['spam'])
-    print("ham probs:", table['ham'])
     return table
 
 def main(filename, num_inst, num_words, label_pos):
     dataset = np.loadtxt(open(filename, "rb"), dtype='float64', delimiter=",")
-    
-    # p(spam), p(ham)
-    p_spam, p_ham = get_pcat(dataset, num_inst, label_pos)
-
-    # p(word_in_class)
+    # prior[spam|ham]
+    prior = get_pcat(dataset, num_inst, label_pos)
+    # table[spam|ham][word]
     table = get_pwordinclass(dataset, num_inst, num_words, label_pos)
 
 if __name__ == '__main__':
