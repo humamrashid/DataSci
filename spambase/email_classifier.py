@@ -74,6 +74,6 @@ if __name__ == '__main__':
     label_pos = int(sys.argv[4])
     if label_pos < 0:
         exit_err('Label position must be >= 0', 1)
-    main(sys.argv[1], num_inst, num_words), label_pos)
+    main(sys.argv[1], num_inst, num_words, label_pos)
 
 # EOF.
