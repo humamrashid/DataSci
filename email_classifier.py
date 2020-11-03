@@ -4,8 +4,8 @@
 # CISC 7700X, Prof. Sverdlov
 
 import sys
+import math
 import numpy as np
-import math as m
 from sklearn.metrics import classification_report
 
 def exit_err(msg, err):
@@ -54,9 +54,9 @@ def get_liketable(dataset, num_inst, num_attrs, label_pos):
     return table
 
 def classifier(prior, like_spam, like_ham):
-    vlog = np.vectorize(m.log)
-    a = m.log(prior['spam']) + sum(vlog(like_spam))
-    b = m.log(prior['ham']) + sum(vlog(like_ham))
+    vlog = np.vectorize(math.log)
+    a = math.log(prior['spam']) + sum(vlog(like_spam))
+    b = math.log(prior['ham']) + sum(vlog(like_ham))
     return 1.0 if a > b else 0.0
 
 def main(filename, num_inst, num_attrs, label_pos, n_rand):
