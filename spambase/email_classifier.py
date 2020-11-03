@@ -5,6 +5,7 @@
 
 import sys
 import numpy as np
+import math as m
 
 def exit_err(msg, err):
     print(msg, file=sys.stderr)
@@ -24,7 +25,7 @@ def get_prior(dataset, num_inst, label_pos):
     prior['ham'] = count_ham / num_inst
     return prior
 
-def get_attrtable(dataset, num_inst, num_attrs, label_pos):
+def get_liketable(dataset, num_inst, num_attrs, label_pos):
     table = {}
     table['spam'] = np.empty(num_attrs, dtype='float64')
     table['ham'] = np.empty(num_attrs, dtype='float64')
@@ -51,12 +52,22 @@ def get_attrtable(dataset, num_inst, num_attrs, label_pos):
             table['ham'][k] = 0.0
     return table
 
+def classifier(prior, likelihood_spam, likelihood_ham):
+    vlog = np.vectorize(m.log)
+    a = m.log(prior['spam']) + sum(vlog(likelihood_spam))
+    b = m.log(prior['ham']) + sum(vlog(likelihood_ham))
+    return True if a > b else False
+
 def main(filename, num_inst, num_attrs, label_pos):
     dataset = np.loadtxt(open(filename, "rb"), dtype='float64', delimiter=",")
-    # prior[spam|ham]
+    # Training:
     prior = get_prior(dataset, num_inst, label_pos)
-    # table[spam|ham][word]
-    table = get_attrtable(dataset, num_inst, num_attrs, label_pos)
+    likelihood_table = get_liketable(dataset, num_inst, num_attrs, label_pos)
+    # Classification:
+    if classifier(prior, likelihood_table['spam'], likelihood_table['ham']):
+        print("Email is spam")
+    else:
+        print("Email is not spam")
 
 if __name__ == '__main__':
     if len(sys.argv) != 5:
