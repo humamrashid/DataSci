@@ -53,10 +53,10 @@ def get_liketable(dataset, num_inst, num_attrs, label_pos):
             table['ham'][k] = 0.0
     return table
 
-def classifier(prior, likelihood_spam, likelihood_ham):
+def classifier(prior, like_spam, like_ham):
     vlog = np.vectorize(m.log)
-    a = m.log(prior['spam']) + sum(vlog(likelihood_spam))
-    b = m.log(prior['ham']) + sum(vlog(likelihood_ham))
+    a = m.log(prior['spam']) + sum(vlog(like_spam))
+    b = m.log(prior['ham']) + sum(vlog(like_ham))
     return 1.0 if a > b else 0.0
 
 def main(filename, num_inst, num_attrs, label_pos, n_rand):
@@ -67,7 +67,7 @@ def main(filename, num_inst, num_attrs, label_pos, n_rand):
     # Classification:
     assigned = []
     actual = dataset[:, label_pos - 1].tolist()
-    for i in range(num_inst):
+    for _ in range(num_inst):
         spam_features = np.random.choice(like_tab['spam'], n_rand)
         ham_features = np.random.choice(like_tab['ham'], n_rand)
         c = classifier(prior, spam_features, ham_features)
