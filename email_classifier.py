@@ -6,6 +6,7 @@
 import sys
 import numpy as np
 import math as m
+from sklearn.metrics import classification_report
 
 def exit_err(msg, err):
     print(msg, file=sys.stderr)
@@ -56,23 +57,29 @@ def classifier(prior, likelihood_spam, likelihood_ham):
     vlog = np.vectorize(m.log)
     a = m.log(prior['spam']) + sum(vlog(likelihood_spam))
     b = m.log(prior['ham']) + sum(vlog(likelihood_ham))
-    return True if a > b else False
+    return 1.0 if a > b else 0.0
 
-def main(filename, num_inst, num_attrs, label_pos):
+def main(filename, num_inst, num_attrs, label_pos, n_rand):
     dataset = np.loadtxt(open(filename, "rb"), dtype='float64', delimiter=",")
     # Training:
     prior = get_prior(dataset, num_inst, label_pos)
-    likelihood_table = get_liketable(dataset, num_inst, num_attrs, label_pos)
+    like_tab = get_liketable(dataset, num_inst, num_attrs, label_pos)
     # Classification:
-    if classifier(prior, likelihood_table['spam'], likelihood_table['ham']):
-        print("Email is spam")
-    else:
-        print("Email is not spam")
+    assigned = []
+    actual = dataset[:, label_pos - 1].tolist()
+    for i in range(num_inst):
+        spam_features = np.random.choice(like_tab['spam'], n_rand)
+        ham_features = np.random.choice(like_tab['ham'], n_rand)
+        c = classifier(prior, spam_features, ham_features)
+        assigned.append(c)
+    # Classification report
+    report = classification_report(actual, assigned, labels = [1.0, 0.0])
+    print("\nClassification report:\n\n", report)
 
 if __name__ == '__main__':
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 6:
         exit_err(f'Usage: {sys.argv[0]} <file_name> <num_inst> <num_attrs>' \
-                + ' <label_pos>', 1)
+                + ' <label_pos> <n_random>', 1)
     num_inst = int(sys.argv[2])
     if num_inst <= 0:
         exit_err('Number of instances must be > 0', 1)
@@ -82,6 +89,9 @@ if __name__ == '__main__':
     label_pos = int(sys.argv[4])
     if label_pos < 0:
         exit_err('Label position must be >= 0', 1)
-    main(sys.argv[1], num_inst, num_attrs, label_pos)
+    n_rand = int(sys.argv[5])
+    if n_rand <= 0:
+        exit_err('Number of random values must be >= 0', 1)
+    main(sys.argv[1], num_inst, num_attrs, label_pos, n_rand)
 
 # EOF.
