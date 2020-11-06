@@ -5,20 +5,21 @@
 
 require 'csv'
 
-def load_data
-  train = []
+# Calculate Euclidean distance
+def calc_dist(a, b)
+end
+
+# Load the training and test instances into two arrays
+def load_data(partition)
   test = []
+  train = []
   CSV.foreach(ARGV[0]) do |row|
-    if Random.new.rand(1.0) < 0.8
-      train.push(row)
-    else
-      test.push(row)
-    end
+    Random.new.rand(1.0) < partition ? train.push(row) : test.push(row)
   end
   return train, test
 end
 
-abort "Usage: #{$PROGRAM_NAME} <data_file>" if ARGV.length != 1
-train, test = load_data
+abort "Usage: #{$PROGRAM_NAME} <data_file> <partition>" if ARGV.length != 2
+train, test = load_data(partition)
 
 # EOF.
