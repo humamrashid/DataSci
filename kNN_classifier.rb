@@ -10,16 +10,12 @@ def calc_dist(a, b)
 end
 
 # Load the training and test instances into two arrays
-def load_data(partition)
-  test = []
-  train = []
-  CSV.foreach(ARGV[0]) do |row|
-    Random.new.rand(1.0) < partition ? train.push(row) : test.push(row)
-  end
-  return train, test
+def load_data(file, partition, train, test)
+  r = Random.new.rand(1.0)
+  CSV.foreach(file) {|row| r < partition ? train << row : test << row}
 end
 
 abort "Usage: #{$PROGRAM_NAME} <data_file> <partition>" if ARGV.length != 2
-train, test = load_data(partition)
+load_data(ARGV[0], partition, train, test)
 
 # EOF.
