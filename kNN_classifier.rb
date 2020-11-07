@@ -2,7 +2,7 @@
 
 # Humam Rashid
 # CISC 7700X, Prof. Sverdlov
-# k nearest-neighbot with k = 1
+# k nearest-neighbor with k = 1
 
 require 'csv'
 
