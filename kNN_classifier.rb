@@ -24,8 +24,6 @@ train = []; test = []
 until train.length > 0 and test.length > 0 do
   train, test = load_data(ARGV[0], ARGV[1].to_f, train, test)
 end
-puts "Number of training instances: #{train.length}"
-puts "Number of test instances: #{test.length}"
 test.each do |r|
   min_dist = calc_dist(r, train[min_index = 0])
   (1...train.length).each do |i|
