@@ -11,6 +11,16 @@ from time import time
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+def show_clusters(vectorizer, km, K):
+    terms = vectorizer.get_feature_names()
+    order_centroids = km.cluster_centers_.argsort()[:, ::-1]
+    print('Top terms per cluster:')
+    for i in range(K):
+        print(f'Cluster {i}:', end='')
+        for j in order_centroids[i, :10]:
+            print(f' {terms[j]}', end='')
+        print()
+
 def cluster_kmeans(km, vector, K):
     start = time()
     km.fit(vector)
@@ -21,7 +31,7 @@ def extract_features(vectorizer, corpus):
     vector = vectorizer.fit_transform(corpus)
     print(f'Feature extraction elapsed time: {time() - start}s')
     x, y = vector.shape
-    print(f'No. of samples: {x}\nNo. of features: {y}')
+    print(f'Number of samples: {x}\nNumber of features: {y}')
     return vector
 
 def get_corpus(dirname, ext):
@@ -33,11 +43,11 @@ def get_corpus(dirname, ext):
     return corpus
 
 def main(dirname, ext, K, max_feat):
-    start = time()
     print('Loading data...', end='')
     corpus = get_corpus(dirname, ext)
     print(f'corpus size: {len(corpus)} files')
     print(f"Extracting features from training dataset...")
+    start = time()
     vectorizer = TfidfVectorizer(min_df=2, max_df=0.5, max_features=max_feat, \
             stop_words='english')
     vector = extract_features(vectorizer, corpus)
@@ -45,6 +55,8 @@ def main(dirname, ext, K, max_feat):
     km = KMeans(n_clusters=K, init='random', max_iter=100, n_init=1, verbose=1)
     cluster_kmeans(km, vector, K)
     print(f'Overall elapsed time: {time() - start}s')
+    print()
+    show_clusters(vectorizer, km, K)
 
 if __name__ == "__main__":
     argc = len(sys.argv)
