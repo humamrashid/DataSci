@@ -11,6 +11,12 @@ from time import time
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+def assign_cat(km, doc_path):
+    doc = []
+    with open(doc_path, errors='ignore') as text_input:
+        doc.append(text_input.read())
+    #km.predict(doc)
+
 def show_clusters(vectorizer, km, K):
     terms = vectorizer.get_feature_names()
     order_centroids = km.cluster_centers_.argsort()[:, ::-1]
@@ -42,7 +48,7 @@ def get_corpus(dirname, ext):
             corpus.append(text_input.read())
     return corpus
 
-def main(dirname, ext, K, max_feat):
+def main(dirname, ext, K, new_doc, max_feat):
     print('Loading data...', end='')
     corpus = get_corpus(dirname, ext)
     print(f'corpus size: {len(corpus)} files')
@@ -58,15 +64,19 @@ def main(dirname, ext, K, max_feat):
     print(f'Overall elapsed time: {time() - start}s')
     print()
     show_clusters(vectorizer, km, K)
+    print('Assigning category to new document: {new_doc}...')
+    assign_cat(km, new_doc)
 
 if __name__ == "__main__":
     argc = len(sys.argv)
-    if argc < 4 or argc > 5:
-        print(f'Usage: {sys.argv[0]} <files_dir> <file_ext> <K> [max_features]')
+    if argc < 5 or argc > 6:
+        print(f'Usage: {sys.argv[0]} <train_dir> <file_ext> <K>' \
+                ' <new_doc> [max_features]')
         exit(1)
-    if argc == 4:
-        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), None)
+    if argc == 5:
+        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4], None)
     else:
-        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]))
+        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4], \
+                int(sys.argv[5]))
 
 # EOF.
