@@ -28,14 +28,10 @@ def show_clusters(vectorizer, km, K):
         print()
 
 def cluster_kmeans(km, vector, K):
-    start = time()
     km.fit(vector)
-    print(f'Clustering elapsed time: {time() - start}s')
 
-def extract_features(vectorizer, corpus):
-    start = time()
-    vector = vectorizer.fit_transform(corpus)
-    print(f'Feature extraction elapsed time: {time() - start}s')
+def extract_features(vectorizer, text_data):
+    vector = vectorizer.fit_transform(text_data)
     x, y = vector.shape
     print(f'Number of samples: {x}\nNumber of features: {y}')
     return vector
@@ -61,11 +57,11 @@ def main(dirname, ext, K, new_doc, max_feat):
     km = KMeans(n_clusters=K, init='random', max_iter=100, n_init=1, \
             verbose=True)
     cluster_kmeans(km, vector, K)
-    print(f'Overall elapsed time: {time() - start}s')
     print()
     show_clusters(vectorizer, km, K)
     print('Assigning category to new document: {new_doc}...')
     assign_cat(km, new_doc)
+    print(f'Overall elapsed time: {time() - start}s')
 
 if __name__ == "__main__":
     argc = len(sys.argv)
