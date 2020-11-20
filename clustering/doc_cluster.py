@@ -60,7 +60,7 @@ def main(dirname, ext, K, max_feat):
 
 if __name__ == "__main__":
     argc = len(sys.argv)
-    if argc < 4:
+    if argc < 4 or argc > 5:
         print(f'Usage: {sys.argv[0]} <files_dir> <file_ext> <K> [max_features]')
         exit(1)
     if argc == 4:
