@@ -7,11 +7,22 @@
 import os
 import sys
 import glob
-import numpy as np
 from time import time
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.cluster import KMeans
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+def cluster_kmeans(km, vector, K):
+    start = time()
+    km.fit(vector)
+    print(f'Clustering elapsed time: {time() - start}s')
+
+def extract_features(vectorizer, corpus):
+    start = time()
+    vector = vectorizer.fit_transform(corpus)
+    print(f'Feature extraction elapsed time: {time() - start}s')
+    x, y = vector.shape
+    print(f'No. of samples: {x}\nNo. of features: {y}')
+    return vector
 
 def get_corpus(dirname, ext):
     corpus = []
@@ -20,32 +31,29 @@ def get_corpus(dirname, ext):
         with open(path, errors='ignore') as text_input:
             corpus.append(text_input.read())
     return corpus
-    #vectorizer.fit(corpus)
-    #vector = vectorizer.transform(corpus)
-    #print(vectorizer.vocabulary_)
 
-def main(dirname, ext, K):
-    categories = None
-    corpus = get_corpus('temp', ext)
-    print(f'Corpus size: {len(corpus)}')
-    print(f"Extracting features from training dataset: {dirname}{'*.' + ext}")
-    overall_t = part_t =  time()
-    vectorizer = TfidfVectorizer(min_df=2, max_df=0.5, stop_words='english')
-    vector = vectorizer.fit_transform(corpus)
-    print(f'Feature extraction elapsed time: {time() - part_t}s')
-    x, y = vector.shape
-    print(f'No. of samples: {x}\nNo. of features: {y}')
+def main(dirname, ext, K, max_feat):
+    start = time()
+    print('Loading data...', end='')
+    corpus = get_corpus(dirname, ext)
+    print(f'corpus size: {len(corpus)} files')
+    print(f"Extracting features from training dataset...")
+    vectorizer = TfidfVectorizer(min_df=2, max_df=0.5, max_features=max_feat, \
+            stop_words='english')
+    vector = extract_features(vectorizer, corpus)
+    print(f'Clustering data with K={K}...')
     km = KMeans(n_clusters=K, init='random', max_iter=100, n_init=1, verbose=1)
-    print(f'Clustering data with {km}')
-    part_t = time()
-    km.fit(vector)
-    print(f'Clustering elapsed time: {time() - part_t}s')
-    print(f'Overall elapsed time: {time() - overall_t}s')
+    cluster_kmeans(km, vector, K)
+    print(f'Overall elapsed time: {time() - start}s')
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print(f'Usage: {sys.argv[0]} <files_dir> <file_ext> <K>')
+    argc = len(sys.argv)
+    if argc < 4:
+        print(f'Usage: {sys.argv[0]} <files_dir> <file_ext> <K> [max_features]')
         exit(1)
-    main(sys.argv[1], sys.argv[2], int(sys.argv[3]))
+    if argc == 4:
+        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), None)
+    else:
+        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]))
 
 # EOF.
