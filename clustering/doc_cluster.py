@@ -52,7 +52,8 @@ def main(dirname, ext, K, max_feat):
             stop_words='english')
     vector = extract_features(vectorizer, corpus)
     print(f'Clustering data with K={K}...')
-    km = KMeans(n_clusters=K, init='random', max_iter=100, n_init=1, verbose=1)
+    km = KMeans(n_clusters=K, init='random', max_iter=100, n_init=1, \
+            verbose=True)
     cluster_kmeans(km, vector, K)
     print(f'Overall elapsed time: {time() - start}s')
     print()
