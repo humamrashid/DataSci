@@ -11,11 +11,12 @@ from time import time
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-def assign_cat(km, doc_path):
+def assign_cat(vectorizer, km, doc_path):
     doc = []
     with open(doc_path, errors='ignore') as text_input:
         doc.append(text_input.read())
-    #km.predict(doc)
+    vector = extract_features(vectorizer, doc)
+    km.predict(vector)
 
 def show_clusters(vectorizer, km, K):
     terms = vectorizer.get_feature_names()
@@ -59,8 +60,9 @@ def main(dirname, ext, K, new_doc, max_feat):
     cluster_kmeans(km, vector, K)
     print()
     show_clusters(vectorizer, km, K)
-    print('Assigning category to new document: {new_doc}...')
-    assign_cat(km, new_doc)
+    #print()
+    #print(f'Assigning category to new document: {new_doc}...')
+    #assign_cat(vectorizer, km, new_doc)
     print(f'Overall elapsed time: {time() - start}s')
 
 if __name__ == "__main__":
