@@ -5,6 +5,7 @@
 # k nearest-neighbor with k = 1
 
 require 'csv'
+require 'confusion-matrix'
 
 def calc_dist(a, b)
   Math::sqrt(a[0...-1].zip(b).inject(0) { |sum, e| sum += (e[0] - e[1])**2 })
@@ -12,6 +13,7 @@ end
 
 abort "Usage: #{$PROGRAM_NAME} <file> <partition>" if ARGV.length != 2
 train = []; test = []
+cm = ConfusionMatrix.new
 until train.length > 0 and test.length > 0 do
   CSV.foreach(ARGV[0]) do |row|
     rf = row.map(&:to_f)
@@ -27,7 +29,11 @@ test.each do |r|
       min_index = i
     end
   end
-  puts "prediction: #{train[min_index][-1]}, actual: #{r[-1]}"
+  actual = r[-1]
+  assigned = train[min_index][-1]
+  cm.add_for(actual, assigned)
+  puts "prediction: #{assigned}, actual: #{actual}"
 end
+puts "Accuracy: #{cm.overall_accuracy}"
 
 # EOF.
