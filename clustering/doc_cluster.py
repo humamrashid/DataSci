@@ -11,12 +11,13 @@ from time import time
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-def assign_cat(vectorizer, km, doc_path):
+def assign_cat(km, max_feat, doc_path):
     doc = []
     with open(doc_path, errors='ignore') as text_input:
         doc.append(text_input.read())
+    vectorizer = TfidfVectorizer(max_features=max_feat, stop_words='english')
     vector = extract_features(vectorizer, doc)
-    km.predict(vector)
+    return km.predict(vector)
 
 def show_clusters(vectorizer, km, K):
     terms = vectorizer.get_feature_names()
@@ -45,36 +46,38 @@ def get_corpus(dirname, ext):
             corpus.append(text_input.read())
     return corpus
 
-def main(dirname, ext, K, new_doc, max_feat):
+def main(dirname, ext, K, new_doc, iters, max_feat):
     print('Loading data...', end='')
     corpus = get_corpus(dirname, ext)
-    print(f'corpus size: {len(corpus)} files')
+    print(f'corpus size: {len(corpus)} documents')
     print(f"Extracting features from training dataset...")
     start = time()
-    vectorizer = TfidfVectorizer(min_df=2, max_df=0.5, max_features=max_feat, \
-            stop_words='english')
+    vectorizer = TfidfVectorizer(min_df=0.05, max_df=0.95, \
+            max_features=max_feat, stop_words='english')
     vector = extract_features(vectorizer, corpus)
     print(f'Clustering data with K={K}...')
-    km = KMeans(n_clusters=K, init='random', max_iter=100, n_init=1, \
+    km = KMeans(n_clusters=K, init='random', max_iter=iters, n_init=1, \
             verbose=True)
     cluster_kmeans(km, vector, K)
     print()
     show_clusters(vectorizer, km, K)
-    #print()
-    #print(f'Assigning category to new document: {new_doc}...')
-    #assign_cat(vectorizer, km, new_doc)
+    print()
+    print(f'Assigning category to new document: {new_doc}...')
+    cat = assign_cat(km, max_feat, new_doc)
+    print(f'New document belongs to category: {cat[0]}')
     print(f'Overall elapsed time: {time() - start}s')
 
 if __name__ == "__main__":
     argc = len(sys.argv)
-    if argc < 5 or argc > 6:
+    if argc < 6 or argc > 7:
         print(f'Usage: {sys.argv[0]} <train_dir> <file_ext> <K>' \
-                ' <new_doc> [max_features]')
+                ' <new_doc> <max_iter> [max_features]')
         exit(1)
-    if argc == 5:
-        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4], None)
+    if argc == 6:
+        main(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4], \
+                int(sys.argv[5]), None)
     else:
         main(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4], \
-                int(sys.argv[5]))
+                int(sys.argv[5]), int(sys.argv[6]))
 
 # EOF.
