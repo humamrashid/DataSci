@@ -19,6 +19,16 @@ def assign_cat(km, max_feat, doc_path):
     vector = extract_features(vectorizer, doc)
     return km.predict(vector)
 
+def ask_docs(km, max_feat):
+    while True:
+        print('\nEnter new document to categorize:', end=' ')
+        doc_path = input()
+        if len(doc_path) == 0:
+            break
+        print(f'Assigning category to new document: {doc_path}...')
+        cat = assign_cat(km, max_feat, doc_path)
+        print(f'New document belongs to category: {cat[0]}')
+
 def show_clusters(vectorizer, km, K):
     terms = vectorizer.get_feature_names()
     order_centroids = km.cluster_centers_.argsort()[:, ::-1]
@@ -61,17 +71,15 @@ def main(dirname, ext, K, new_doc, iters, max_feat):
     cluster_kmeans(km, vector, K)
     print()
     show_clusters(vectorizer, km, K)
-    print()
-    print(f'Assigning category to new document: {new_doc}...')
-    cat = assign_cat(km, max_feat, new_doc)
-    print(f'New document belongs to category: {cat[0]}')
-    print(f'Overall elapsed time: {time() - start}s')
+    if new_doc.lower() == "yes":
+        ask_docs(km, max_feat)
+    print(f'\nOverall elapsed time: {time() - start}s')
 
 if __name__ == "__main__":
     argc = len(sys.argv)
     if argc < 6 or argc > 7:
         print(f'Usage: {sys.argv[0]} <train_dir> <file_ext> <K>' \
-                ' <new_doc> <max_iter> [max_features]')
+                ' <new_doc?> <max_iter> [max_features]')
         exit(1)
     if argc == 6:
         main(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4], \
