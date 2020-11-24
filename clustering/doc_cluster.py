@@ -35,7 +35,7 @@ def cluster_kmeans(km, vector, K):
 def extract_features(vectorizer, text_data):
     vector = vectorizer.fit_transform(text_data)
     x, y = vector.shape
-    print(f'Number of samples: {x}\nNumber of features: {y}')
+    print(f'Number of documents: {x}\nNumber of features: {y}')
     return vector
 
 def get_corpus(dirname, ext):
