@@ -24,6 +24,7 @@ def ask_docs(km, max_feat):
         print('\nEnter new document to categorize:', end=' ')
         doc_path = input()
         if len(doc_path) == 0:
+            print('\nQuitting...')
             break
         print(f'Assigning category to new document: {doc_path}...')
         cat = assign_cat(km, max_feat, doc_path)
@@ -38,9 +39,6 @@ def show_clusters(vectorizer, km, K):
         for j in order_centroids[i, :10]:
             print(f' {terms[j]}', end='')
         print()
-
-def cluster_kmeans(km, vector, K):
-    km.fit(vector)
 
 def extract_features(vectorizer, text_data):
     vector = vectorizer.fit_transform(text_data)
@@ -68,7 +66,7 @@ def main(dirname, ext, K, new_doc, iters, max_feat):
     print(f'Clustering data with K={K}...')
     km = KMeans(n_clusters=K, init='random', max_iter=iters, n_init=1, \
             verbose=True)
-    cluster_kmeans(km, vector, K)
+    km.fit(vector)
     print()
     show_clusters(vectorizer, km, K)
     if new_doc.lower() == "yes":
